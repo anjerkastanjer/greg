@@ -49,7 +49,7 @@
                                 <strong>Soort:</strong> {{ $pet->soort }} <br>
                                 <strong>Prijs per uur:</strong> €{{ $pet->loon_per_uur }} <br>
                                 <strong>Begindatum:</strong> {{ $pet->start_date }} <br>
-                                <strong>Eigenaar:</strong> {{ Auth::user()->name }} <!-- Displaying the owner's name -->
+                                <strong>Eigenaar:</strong> {{ $user->name }} <!-- Displaying the owner's name -->
                             </li>
                         @endforeach
                     </ul>
