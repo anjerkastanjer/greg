@@ -1,0 +1,15 @@
+2024-11-02 00:55:56.614 [info] Extension host with pid 1003 started
+2024-11-02 00:55:56.614 [error] Error: EEXIST: file already exists, open '/home/greg/.vscode-server/data/User/workspaceStorage/f4be759cc90087aa636f7144e54f67d7/vscode.lock'
+2024-11-02 00:55:56.632 [info] Lock '/home/greg/.vscode-server/data/User/workspaceStorage/f4be759cc90087aa636f7144e54f67d7/vscode.lock': Could not acquire lock, checking if the file is stale.
+2024-11-02 00:55:56.633 [info] Lock '/home/greg/.vscode-server/data/User/workspaceStorage/f4be759cc90087aa636f7144e54f67d7/vscode.lock': The pid 1064 appears to be gone.
+2024-11-02 00:55:56.634 [info] Lock '/home/greg/.vscode-server/data/User/workspaceStorage/f4be759cc90087aa636f7144e54f67d7/vscode.lock': Deleting a stale lock.
+2024-11-02 00:55:56.753 [info] Lock '/home/greg/.vscode-server/data/User/workspaceStorage/f4be759cc90087aa636f7144e54f67d7/vscode.lock': Lock acquired.
+2024-11-02 00:55:56.885 [info] ExtensionService#_doActivateExtension vscode.tunnel-forwarding, startup: false, activationEvent: 'onTunnel'
+2024-11-02 00:55:56.885 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2024-11-02 00:55:56.886 [info] ExtensionService#_doActivateExtension vscode.php-language-features, startup: false, activationEvent: 'onLanguage:php'
+2024-11-02 00:55:57.226 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2024-11-02 00:55:57.269 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2024-11-02 00:55:57.269 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2024-11-02 00:55:57.543 [info] Eager extensions activated
+2024-11-02 00:55:57.543 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2024-11-02 00:55:57.544 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'

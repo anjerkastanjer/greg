@@ -1,0 +1,12 @@
+0 verbose cli /home/greg/.nvm/versions/node/v20.17.0/bin/node /home/greg/.nvm/versions/node/v20.17.0/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.17.0
+3 silly config load:file:/home/greg/.nvm/versions/node/v20.17.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/greg/example-app/.npmrc
+5 silly config load:file:/home/greg/.npmrc
+6 silly config load:file:/home/greg/.nvm/versions/node/v20.17.0/etc/npmrc
+7 verbose title npm run dev
+8 verbose argv "run" "dev"
+9 verbose logfile logs-max:10 dir:/home/greg/.npm/_logs/2024-09-24T11_44_34_966Z-
+10 verbose logfile /home/greg/.npm/_logs/2024-09-24T11_44_34_966Z-debug-0.log
+11 silly logfile done cleaning log files
