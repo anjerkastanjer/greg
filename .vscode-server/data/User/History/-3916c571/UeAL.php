@@ -48,15 +48,7 @@ class OppasserController extends Controller
     public function show($id)
     {
         $oppasser = Oppasser::findOrFail($id); // Find oppasser by ID
-        
-        // Decode the soort_dier JSON into an array
-        $soortDierArray = json_decode($oppasser->soort_dier, true);
-        
-        // Implode the array into a string
-        $soortDierString = implode(', ', $soortDierArray);
-        
-        // Pass the string to the view
-        return view('oppasser.show', compact('oppasser', 'soortDierString'));
+        return view('oppasser.show', compact('oppasser'));
     }
 
     /**

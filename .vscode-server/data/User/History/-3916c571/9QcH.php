@@ -22,13 +22,15 @@ class OppasserController extends Controller
         $user_id = Auth::id(); // Get the logged-in user's ID
         $user_name = Auth::user()->name; // Get the name of the authenticated user
 
-        // Create a single oppasser record with the array of diersoorten as JSON
-        Oppasser::create([
-            'user_id' => $user_id,
-            'naam' => $user_name,
-            'soort_dier' => json_encode($request->soort_dier), // Encode the array as JSON
-            'loon' => $request->loon,
-        ]);
+        // Loop through each soort_dier entry and create an oppasser record
+        foreach ($request->soort_dier as $soort) {
+            Oppasser::create([
+                'user_id' => $user_id,
+                'naam' => $user_name,
+                'soort_dier' => $soort,
+                'loon' => $request->loon,
+            ]);
+        }
 
         return redirect()->route('dashboard')->with('success', 'Je bent succesvol aangemeld als oppas voor meerdere dieren.');
     }
@@ -48,15 +50,7 @@ class OppasserController extends Controller
     public function show($id)
     {
         $oppasser = Oppasser::findOrFail($id); // Find oppasser by ID
-        
-        // Decode the soort_dier JSON into an array
-        $soortDierArray = json_decode($oppasser->soort_dier, true);
-        
-        // Implode the array into a string
-        $soortDierString = implode(', ', $soortDierArray);
-        
-        // Pass the string to the view
-        return view('oppasser.show', compact('oppasser', 'soortDierString'));
+        return view('oppasser.show', compact('oppasser'));
     }
 
     /**
