@@ -39,11 +39,11 @@ class OppasserController extends Controller
     /**
      * Display a listing of the oppassers.
      */
-    public function dashboard()
-{
-    $oppassers = Oppasser::all(); // Get all oppassers
-    return view('dashboard', compact('oppassers'));
-}
+    public function index()
+    {
+        $oppassers = Oppasser::all(); // Get all oppassers, you can modify this to get specific ones
+        return view('oppasser.index', compact('oppassers'));
+    }
 
     /**
      * Show the specified oppasser.

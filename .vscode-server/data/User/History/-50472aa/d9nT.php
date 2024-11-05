@@ -46,7 +46,7 @@
                     <!-- List of oppassers -->
                     <h3 class="mt-6 text-lg font-semibold">Lijst van Oppassers</h3>
                     <ul class="mt-4">
-                        @foreach ($oppassers as $oppasser)
+                        @foreach ($oppasser as $oppasser)
                             <li class="mb-2">
                                 <strong>Naam:</strong> {{ $oppasser->naam }} <br>
                                 <strong>Soort Dier:</strong> {{ $oppasser->soort_dier }} <br>

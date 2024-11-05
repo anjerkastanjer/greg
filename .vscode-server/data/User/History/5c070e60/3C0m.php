@@ -29,12 +29,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/oppasser/create', [OppasserController::class, 'create'])->name('oppasser.create');
     Route::post('/oppasser', [OppasserController::class, 'store'])->name('oppasser.store');
-    Route::get('/dashboard', [OppasserController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-
+    Route::get('/oppassers', [OppasserController::class, 'index'])->name('oppasser.index'); // To list oppassers
     Route::get('/oppasser/{id}', [OppasserController::class, 'show'])->name('oppasser.show'); // To show a specific oppasser
-    Route::get('/oppasser/{id}/edit', [OppasserController::class, 'edit'])->name('oppasser.edit'); // To show edit form
-    Route::patch('/oppasser/{id}', [OppasserController::class, 'update'])->name('oppasser.update'); // To update oppasser
-    Route::delete('/oppasser/{id}', [OppasserController::class, 'destroy'])->name('oppasser.destroy'); // To delete oppasser
 });
 
 // Pet-related routes
