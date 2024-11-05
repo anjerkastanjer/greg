@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController; 
 use App\Http\Controllers\PetController; 
-use App\Http\Controllers\SittingRequestController;
+use App\Http\Controllers\OppasserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pet;
 
@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Oppasser routes
+//oppasser router
 Route::middleware(['auth'])->group(function () {
     Route::get('/oppasser/create', [OppasserController::class, 'create'])->name('oppasser.create');
     Route::post('/oppasser', [OppasserController::class, 'store'])->name('oppasser.store');
@@ -43,22 +43,23 @@ Route::get('/pets.index', function () {
 })->middleware(['auth'])->name('pets.index');
 
 
+
 // User-related routes
 Route::resource('users', UserController::class);
 
 // Additional routes for navigation
 
-Route::get('/all-pets', function () {
-    return view('all-pets'); // Create this view
-})->middleware(['auth'])->name('all.pets');
+// Route::get('/all-pets', function () {
+//     return view('all-pets'); // Create this view
+// })->middleware(['auth'])->name('all.pets');
 
-Route::get('/all-sitters', function () {
-    return view('all-sitters'); // Create this view
-})->middleware(['auth'])->name('sitters.all');
+// Route::get('/all-sitters', function () {
+//     return view('all-sitters'); // Create this view
+// })->middleware(['auth'])->name('sitters.all');
 
-Route::get('/admin', function () {
-    return view('admin'); // Create this view
-})->middleware(['auth', 'admin'])->name('admin'); // Assuming you have an admin middleware
+// Route::get('/admin', function () {
+//     return view('admin'); // Create this view
+// })->middleware(['auth', 'admin'])->name('admin'); // Assuming you have an admin middleware
 
-// Require authentication routes
-require __DIR__.'/auth.php';
+// // Require authentication routes
+// require __DIR__.'/auth.php';

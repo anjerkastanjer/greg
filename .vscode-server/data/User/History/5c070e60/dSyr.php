@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PetController; 
 use App\Http\Controllers\SittingRequestController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Pet;
 
 // Home route
 Route::get('/', function () {
@@ -22,24 +23,31 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/all-sitters', [SitterController::class, 'showAllSitters'])->name('sitters.all');
-// Pet-related routes
-Route::get('/jouw-huisdieren', [PetController::class, 'index'])->name('your.pets');
 
-// Sitting requests routes
-Route::resource('sitting-requests', SittingRequestController::class);
+// Pet-related routes
+Route::resource('pets', PetController::class);
+// delete huisdier/pet
+Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
+
+Route::get('/pets.index', function () {
+    $pets = Pet::all();
+    return view('pets.index', compact('pets')); // Create this view
+})->middleware(['auth'])->name('pets.index');
+
+
 
 // User-related routes
 Route::resource('users', UserController::class);
 
+// Additional routes for navigation
 
 Route::get('/all-pets', function () {
-    return view('all.pets'); // Create this view
-})->middleware(['auth'])->name('all.pets'); // Corrected to match the navigation link
+    return view('all-pets'); // Create this view
+})->middleware(['auth'])->name('all.pets');
 
 Route::get('/all-sitters', function () {
     return view('all-sitters'); // Create this view
-})->middleware(['auth'])->name('sitters.all'); // Corrected to match the navigation link
+})->middleware(['auth'])->name('sitters.all');
 
 Route::get('/admin', function () {
     return view('admin'); // Create this view
@@ -47,5 +55,3 @@ Route::get('/admin', function () {
 
 // Require authentication routes
 require __DIR__.'/auth.php';
-
-// Ensure the file ends properly with no extra characters or whitespace
