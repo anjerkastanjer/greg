@@ -61,11 +61,11 @@
                         </div>
                     @endif
 
-<!-- List of oppassers -->
+                   <!-- List of oppassers -->
 <h3 class="mt-6 text-lg font-semibold">Lijst van Oppassers</h3>
 <ul class="mt-4">
     @foreach ($oppassers as $oppasser)
-        @if (auth()->check() && ($oppasser->user_id !== auth()->id())) <!-- Skip the current user's oppasser -->
+        @if ($oppasser->id !== auth()->user()->oppasser->id) <!-- Skip the current user -->
             <li class="mb-2">
                 <strong>Naam:</strong> {{ $oppasser->naam }} <br>
                 <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
@@ -82,7 +82,6 @@
         @endif
     @endforeach
 </ul>
-
 
                     <script>
                         document.getElementById('toggle-oppasser-form').addEventListener('click', function() {

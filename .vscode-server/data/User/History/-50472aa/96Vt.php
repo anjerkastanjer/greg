@@ -61,28 +61,25 @@
                         </div>
                     @endif
 
-<!-- List of oppassers -->
-<h3 class="mt-6 text-lg font-semibold">Lijst van Oppassers</h3>
-<ul class="mt-4">
-    @foreach ($oppassers as $oppasser)
-        @if (auth()->check() && ($oppasser->user_id !== auth()->id())) <!-- Skip the current user's oppasser -->
-            <li class="mb-2">
-                <strong>Naam:</strong> {{ $oppasser->naam }} <br>
-                <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
-                <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
-                <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
+                    <!-- List of oppassers -->
+                    <h3 class="mt-6 text-lg font-semibold">Lijst van Oppassers</h3>
+                    <ul class="mt-4">
+                        @foreach ($oppassers as $oppasser)
+                            <li class="mb-2">
+                                <strong>Naam:</strong> {{ $oppasser->naam }} <br>
+                                <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
+                                <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
+                                <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
 
-                <!-- Optional delete form for each oppasser -->
-                <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Verwijderen</button>
-                </form>
-            </li>
-        @endif
-    @endforeach
-</ul>
-
+                                <!-- Optional delete form for each oppasser -->
+                                <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Verwijderen</button>
+                                </form>
+                            </li>
+                        @endforeach
+                    </ul>
 
                     <script>
                         document.getElementById('toggle-oppasser-form').addEventListener('click', function() {
