@@ -12,7 +12,7 @@ class PetController extends Controller
 {
     // Retrieve pets belonging to the authenticated user
     $pets = Pet::where('user_id', auth()->id())->get(); // Use 'user_id' to fetch pets
-    return view('Pets.index', compact('pets')); // Passes the pets to the view
+    return view('Pets.index', compact('pets', 'allPets')); // Passes the pets to the view
 }
 
     // Store a newly created pet

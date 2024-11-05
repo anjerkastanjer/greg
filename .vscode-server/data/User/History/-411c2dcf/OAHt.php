@@ -17,7 +17,7 @@ return new class extends Migration
         $table->string('soort');
         $table->decimal('loon_per_uur', 8, 2);
         $table->date('start_date');
-        $table->foreignId('user_id')->constrained()->onDelete('cascade')->nullable(); // Add foreign key
+        $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Add foreign key
         $table->timestamps();
         });
     }

@@ -59,25 +59,26 @@
                             </form>
                         </div>
 
+                        <!-- List of user's pets -->
                         <h3 class="mt-6 text-lg font-semibold">Lijst van jouw Huisdieren</h3>
-<ul class="mt-4">
-    @foreach ($pets as $pet)
-        <li class="mb-2">
-            <strong>Naam:</strong> {{ $pet->naam }} <br>
-            <strong>Soort:</strong> {{ $pet->soort }} <br>
-            <strong>Prijs per uur:</strong> €{{ $pet->loon_per_uur }} <br>
-            <strong>Begindatum:</strong> {{ $pet->start_date }} <br>
-            <strong>Eigenaar:</strong> Jij <!-- Indicate that the user is the owner -->
-            
-            <!-- Form to delete the pet -->
-            <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" class="mt-2">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md mb-4">Verwijderen</button>
-            </form>
-        </li>
-    @endforeach
-</ul>
+                        <ul class="mt-4">
+                            @foreach ($pets as $pet)
+                                <li class="mb-2">
+                                    <strong>Naam:</strong> {{ $pet->naam }} <br>
+                                    <strong>Soort:</strong> {{ $pet->soort }} <br>
+                                    <strong>Prijs per uur:</strong> €{{ $pet->loon_per_uur }} <br>
+                                    <strong>Begindatum:</strong> {{ $pet->start_date }} <br>
+                                    <strong>Eigenaar:</strong> Jij <!-- Indicate that the user is the owner -->
+                                    
+                                    <!-- Form to delete the pet -->
+                                    <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" class="mt-2">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md mb-4">Verwijderen</button>
+                                    </form>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -9,30 +9,30 @@ class PetController extends Controller
 {
     // Display a listing of the pets for the logged-in user
     public function index()
-{
-    // Retrieve pets belonging to the authenticated user
-    $pets = Pet::where('user_id', auth()->id())->get(); // Use 'user_id' to fetch pets
-    return view('Pets.index', compact('pets')); // Passes the pets to the view
-}
+    {
+        // Retrieve pets belonging to the authenticated user
+        $pets = Pet::where('owner_name', auth()->user()->name)->get(); // Change 'owner_name' to 'owner_id' if using IDs
+        return view('Pets.index', compact('pets')); // Passes the pets to the view
+    }
 
     // Store a newly created pet
     public function store(Request $request)
     {
         // Validate and create pet
-    $validatedData = $request->validate([
-        'naam' => 'required|string|max:255',
-        'soort' => 'required|string|max:255',
-        'loon_per_uur' => 'required|numeric|between:0,9999.99', // Corrected to numeric validation
-        'start_date' => 'required|date',
-    ]);
+        $validatedData = $request->validate([
+            'naam' => 'required|string|max:255',
+            'soort' => 'required|string|max:255',
+            'loon_per_uur' => 'required|numeric|between:0,9999.99', // Corrected to numeric validation
+            'start_date' => 'required|date',
+        ]);
 
-    // Set the user_id to the authenticated user's ID
-    $validatedData['user_id'] = auth()->id(); // Store user_id instead of owner_name
+        // Set the owner name to the authenticated user's name
+        $validatedData['owner_name'] = auth()->user()->name;
 
-    // Create the new pet
-    Pet::create($validatedData); // This will now contain the correct data
-    
-    return redirect()->route('pets.index')->with('success', 'Pet added successfully!'); // Redirect to pets listing
+        // Create the new pet
+        Pet::create($validatedData); // This will now contain the correct data
+        
+        return redirect()->route('pets.index')->with('success', 'Pet added successfully!'); // Redirect to pets listing
     }
 
     // Show the form for editing the specified pet
