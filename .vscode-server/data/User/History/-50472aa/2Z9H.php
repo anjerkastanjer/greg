@@ -64,7 +64,7 @@
                         @foreach ($oppassers as $oppasser)
                             <li class="mb-2">
                                 <strong>Naam:</strong> {{ $oppasser->naam }} <br>
-                                <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
+                                <strong>Soort Dier:</strong> {{ implode(', ', $oppasser->soort_dier) }} <br>
                                 <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
                                 <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
 

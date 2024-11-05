@@ -15,7 +15,7 @@
                         <!-- Weergeven dat de gebruiker al een oppasser is -->
                         <p class="mt-4">Je hebt je al aangemeld als oppasser. Hier zijn je gegevens:</p>
                         <strong>Naam:</strong> {{ $oppasser->naam }} <br>
-                        <strong>Soort Dier:</strong> {{ implode(', ', $oppasser->soort_dier) }} <br>
+                        <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
                         <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
 
                         <!-- Optionele verwijderknop voor deze oppasser -->
@@ -61,20 +61,22 @@
                     <!-- List of oppassers -->
                     <h3 class="mt-6 text-lg font-semibold">Lijst van Oppassers</h3>
                     <ul class="mt-4">
-                        @foreach ($oppassers as $oppasser)
-                            <li class="mb-2">
-                                <strong>Naam:</strong> {{ $oppasser->naam }} <br>
-                                <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
-                                <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
-                                <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
+                        @foreach ($oppassers as $opp)
+                            @if ($opp->id !== $oppasser->id) <!-- Alleen andere oppassers tonen -->
+                                <li class="mb-2">
+                                    <strong>Naam:</strong> {{ $opp->naam }} <br>
+                                    <strong>Soort Dier:</strong> {{ implode(', ', json_decode($opp->soort_dier, true) ?? []) }} <br>
+                                    <strong>Prijs per uur:</strong> €{{ $opp->loon }} <br>
+                                    <strong>Gebruiker:</strong> {{ $opp->user->name ?? 'Onbekend' }}
 
-                                <!-- Optional delete form for each oppasser -->
-                                <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Verwijderen</button>
-                                </form>
-                            </li>
+                                    <!-- Optionele verwijderformulieren voor elke oppasser -->
+                                    <form action="{{ route('oppasser.destroy', $opp->id) }}" method="POST" class="mt-2">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Verwijderen</button>
+                                    </form>
+                                </li>
+                            @endif
                         @endforeach
                     </ul>
 

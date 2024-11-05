@@ -15,7 +15,7 @@
                         <!-- Weergeven dat de gebruiker al een oppasser is -->
                         <p class="mt-4">Je hebt je al aangemeld als oppasser. Hier zijn je gegevens:</p>
                         <strong>Naam:</strong> {{ $oppasser->naam }} <br>
-                        <strong>Soort Dier:</strong> {{ implode(', ', $oppasser->soort_dier) }} <br>
+                        <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
                         <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
 
                         <!-- Optionele verwijderknop voor deze oppasser -->
@@ -25,13 +25,9 @@
                             <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Verwijderen</button>
                         </form>
                     @else
-                        <!-- Button to add a new oppasser -->
-                        <button id="toggle-oppasser-form" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                            Oppasser Aanmelden
-                        </button>
-
-                        <!-- Form for adding a new oppasser -->
-                        <div id="oppasser-form" class="hidden mt-4">
+                        <!-- Formulier om een nieuwe oppasser aan te melden als er nog geen is -->
+                        <h3 class="mt-6 text-lg font-semibold">Aanmelden als Oppasser</h3>
+                        <div id="oppasser-form" class="mt-4">
                             <form action="{{ route('oppasser.store') }}" method="POST">
                                 @csrf
 
@@ -58,32 +54,31 @@
                         </div>
                     @endif
 
-                    <!-- List of oppassers -->
+                    <!-- Optionele lijst van alle oppassers -->
                     <h3 class="mt-6 text-lg font-semibold">Lijst van Oppassers</h3>
                     <ul class="mt-4">
-                        @foreach ($oppassers as $oppasser)
-                            <li class="mb-2">
-                                <strong>Naam:</strong> {{ $oppasser->naam }} <br>
-                                <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
-                                <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
-                                <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
+                        @if ($oppassers->isEmpty())
+                            <li class="mb-2">Geen oppassers gevonden.</li>
+                        @else
+                            @foreach ($oppassers as $oppasser)
+                                <li class="mb-2">
+                                    <strong>Naam:</strong> {{ $oppasser->naam }} <br>
+                                    <strong>Soort Dier:</strong> {{ implode(', ', $oppasser->soort_dier) }} <br>
+                                    <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
+                                    <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
 
-                                <!-- Optional delete form for each oppasser -->
-                                <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Verwijderen</button>
-                                </form>
-                            </li>
-                        @endforeach
+                                    <!-- Optionele verwijderknop voor deze oppasser -->
+                                    <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Verwijderen</button>
+                                    </form>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
 
                     <script>
-                        document.getElementById('toggle-oppasser-form').addEventListener('click', function() {
-                            const form = document.getElementById('oppasser-form');
-                            form.classList.toggle('hidden');
-                        });
-
                         document.getElementById('add-animal-button').addEventListener('click', function() {
                             const additionalAnimalsDiv = document.getElementById('additional-animals');
                             const newAnimalInput = document.createElement('div');
