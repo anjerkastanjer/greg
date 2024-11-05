@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController; 
 use App\Http\Controllers\PetController; 
 use App\Http\Controllers\SittingRequestController;
+use App\Http\Controllers\OppasserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pet;
 
