@@ -20,14 +20,23 @@
                     <div id="oppasser-form" class="hidden mt-4">
                         <form action="{{ route('oppasser.store') }}" method="POST">
                             @csrf
+
                             <div class="mb-4">
-                                <label for="soort_dier" class="block text-white">Soort dier</label>
-                                <input type="text" name="soort_dier" id="soort_dier" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black bg-white" style="color: black;">
+                                <label for="soort_dier" class="block text-white">diersoort waar je op zou willen passen</label>
+                                <div class="flex items-center">
+                                    <input type="text" name="soort_dier[]" id="soort_dier" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black bg-white" style="color: black;">
+                                    <button type="button" id="add-animal-button" class="ml-2 px-2 py-1 border border-black rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                                        +
+                                    </button>
+                                </div>
+                                <div id="additional-animals" class="mt-2"></div>
                             </div>
+
                             <div class="mb-4">
                                 <label for="loon" class="block text-white">Prijs per uur (€)</label>
                                 <input type="text" name="loon" id="loon" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black bg-white" style="color: black;">
                             </div>
+
                             <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                 Aanmelden
                             </button>
@@ -42,6 +51,16 @@
         document.getElementById('toggle-oppasser-form').addEventListener('click', function() {
             const form = document.getElementById('oppasser-form');
             form.classList.toggle('hidden'); // Toggle visibility of the oppasser form
+        });
+
+        document.getElementById('add-animal-button').addEventListener('click', function() {
+            const additionalAnimalsDiv = document.getElementById('additional-animals');
+            const newAnimalInput = document.createElement('div');
+            newAnimalInput.classList.add('mt-2');
+            newAnimalInput.innerHTML = `
+                <input type="text" name="soort_dier[]" required class="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black bg-white" style="color: black;" placeholder="Voeg een ander soort dier toe">
+            `;
+            additionalAnimalsDiv.appendChild(newAnimalInput);
         });
     </script>
 </x-app-layout>
