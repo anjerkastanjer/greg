@@ -118,3 +118,46 @@ cd example-app/
 php artisan serve
 mysql
 php artisan make:migration create_oppasser_table --create=oppasser
+git init
+cd example-app/
+git config --global user.name "Titus Driessen"
+git config --global user.email tts.driessen@gmail.com
+php artisan serve
+cd example-app/
+php artisan migrate
+php artisan serve
+php artisan migrate
+php artisan serve
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+mysql
+php artisan serve
+mysql
+php artisan migrate
+php artisan migrate:refresh
+php artisan serve
+mysql
+php artisan migrate
+php artisan serve
+php artisan migrate: rollback
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+mysql
+php artisan serve
+mysql
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
