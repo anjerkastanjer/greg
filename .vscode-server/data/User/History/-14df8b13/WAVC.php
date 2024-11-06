@@ -53,6 +53,9 @@ public function reject(Aanvraag $aanvraag)
     return redirect()->route('aanvragen.index')->with('error', 'Je hebt geen rechten om deze aanvraag te annuleren.');
 }
 
+
+use Illuminate\Database\QueryException;
+
 public function store(Request $request)
 {
     // Valideer de aanvraag

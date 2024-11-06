@@ -5,44 +5,40 @@ namespace App\Http\Controllers;
 use App\Models\Aanvraag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\QueryException;
 
 class AanvraagController extends Controller
 {
     public function index()
-    {
-        // Haal de binnenkomende aanvragen op voor de ingelogde gebruiker
-        $binnenkomendeAanvragen = Aanvraag::where('owner_id', Auth::id())
-            ->where('status', '!=', 'accepted') // Alleen niet-geaccepteerde aanvragen
-            ->where('status', '!=', 'geannulleerd') // Voeg de filter voor geannuleerde aanvragen toe
-            ->with('pet') // Laad de pet relatie
-            ->get();
-    
-        // Haal de uitgaande aanvragen op voor de ingelogde gebruiker
-        $uitgaandeAanvragen = Aanvraag::where('oppasser_id', Auth::id())
-            ->where('status', '!=', 'accepted') // Alleen niet-geaccepteerde aanvragen
-            ->where('status', '!=', 'geannulleerd') // Voeg de filter voor geannuleerde aanvragen toe
-            ->with('pet') // Laad de pet relatie
-            ->get();
-    
-        // Haal de gecancelde aanvragen op voor de ingelogde gebruiker
-        $gecanceldeAanvragen = Aanvraag::where('owner_id', Auth::id())
-            ->where('status', 'geannulleerd') // Alleen gecancelde aanvragen
-            ->with('pet') // Laad de pet relatie
-            ->get();
-    
-        // Dit zou de gecancelde aanvragen moeten ophalen en naar de view sturen
-        return view('aanvragen.index', compact('binnenkomendeAanvragen', 'uitgaandeAanvragen', 'gecanceldeAanvragen'));
-    }
-    
+{
+    // Haal de binnenkomende aanvragen op voor de ingelogde gebruiker
+    $binnenkomendeAanvragen = Aanvraag::where('owner_id', Auth::id())
+        ->where('status', '!=', 'accepted') // Alleen niet-geaccepteerde aanvragen
+        ->with('pet') // Laad de pet relatie
+        ->get();
+
+    // Haal de uitgaande aanvragen op voor de ingelogde gebruiker
+    $uitgaandeAanvragen = Aanvraag::where('oppasser_id', Auth::id())
+        ->where('status', '!=', 'accepted') // Alleen niet-geaccepteerde aanvragen
+        ->with('pet') // Laad de pet relatie
+        ->get();
+
+    // Haal de gecancelde aanvragen op voor de ingelogde gebruiker
+    $gecanceldeAanvragen = Aanvraag::where('owner_id', Auth::id())
+        ->where('status', 'cancelled') // Alleen gecancelde aanvragen
+        ->with('pet') // Laad de pet relatie
+        ->get();
+
+    return view('aanvragen.index', compact('binnenkomendeAanvragen', 'uitgaandeAanvragen', 'gecanceldeAanvragen'));
+}
+
 
 public function reject(Aanvraag $aanvraag)
 {
     // Controleer of de aanvraag behoort tot de ingelogde gebruiker
     if ($aanvraag->owner_id === Auth::id() || $aanvraag->oppasser_id === Auth::id()) {
-        // Zet de status op 'geannulleerd' in plaats van 'rejected'
+        // Zet de status op 'gecancelled' in plaats van 'rejected'
         $aanvraag->update([
-            'status' => 'geannulleerd'
+            'status' => 'cancelled'
         ]);
 
         // Optioneel: geef een succesmelding terug
@@ -53,6 +49,7 @@ public function reject(Aanvraag $aanvraag)
     return redirect()->route('aanvragen.index')->with('error', 'Je hebt geen rechten om deze aanvraag te annuleren.');
 }
 
+
 public function store(Request $request)
 {
     // Valideer de aanvraag
@@ -60,37 +57,23 @@ public function store(Request $request)
         'pet_id' => 'required|exists:pets,id', // Zorg ervoor dat het huisdier bestaat
         'oppasser_id' => 'required|exists:users,id', // Zorg ervoor dat de oppasser bestaat
         'owner_id' => 'required|exists:users,id', // Zorg ervoor dat de eigenaar bestaat
-        'status' => 'required|string', // Valideer de status
+        'status' => 'required|string', // Validatie voor status
     ]);
 
-    try {
-        // Controleer of de huidige gebruiker al een aanvraag heeft gedaan voor dit huisdier
-        $existingAanvraag = Aanvraag::where('pet_id', $validatedData['pet_id'])
-                                    ->where('owner_id', auth()->id()) // Zorg ervoor dat de huidige gebruiker de eigenaar is
-                                    ->where('status', '!=', 'accepted') // Voorkom aanvragen die al geaccepteerd zijn
-                                    ->exists();
+    // Controleer of er al een aanvraag is voor dit huisdier door de huidige gebruiker
+    $existingAanvraag = Aanvraag::where('pet_id', $validatedData['pet_id'])
+                                ->where('owner_id', auth()->id()) // Zorg ervoor dat de huidige gebruiker de eigenaar is
+                                ->exists();
 
-        if ($existingAanvraag) {
-            return redirect()->back()->with('error', 'Je hebt al een aanvraag gedaan voor dit huisdier.');
-        }
-
-        // Maak de nieuwe aanvraag aan
-        Aanvraag::create($validatedData);
-
-        return redirect()->route('aanvragen.index')->with('success', 'Aanvraag succesvol ingediend!');
-    
-    } catch (QueryException $e) {
-        // Foutafhandeling voor duplicaten (Error code 1062 duidt op een duplicaat)
-        if ($e->getCode() == 1062) {
-            return redirect()->back()->with('error', 'Je hebt al een aanvraag voor dit huisdier ingediend.');
-        }
-
-        // Algemeen foutbericht voor andere databasefouten
-        return redirect()->back()->with('error', 'Er is een fout opgetreden bij het indienen van de aanvraag.');
+    if ($existingAanvraag) {
+        return redirect()->back()->with('error', 'Je hebt al een aanvraag gedaan voor dit huisdier.');
     }
+
+    // Maak de aanvraag aan
+    Aanvraag::create($validatedData);
+
+    return redirect()->route('aanvragen.index')->with('success', 'Aanvraag succesvol ingediend!');
 }
-
-
     public function acceptAanvraag($id)
     {
         $aanvraag = Aanvraag::findOrFail($id);

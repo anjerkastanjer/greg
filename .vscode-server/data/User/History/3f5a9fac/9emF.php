@@ -80,17 +80,13 @@
                                         <!-- Button for 'Meld je aan als Oppas' (Apply as a Pet Sitter) -->
                                         @auth
                                             @if ($pet->user->id !== auth()->user()->id) <!-- Only show button for pets not owned by the logged-in user -->
-                                            <form action="{{ route('aanvragen.store', ['owner_id' => $pet->user->id]) }}" method="POST" class="mt-4">
-    @csrf
-    <input type="hidden" name="pet_id" value="{{ $pet->id }}">
-    <input type="hidden" name="owner_id" value="{{ $pet->user->id }}">
-    <input type="hidden" name="oppasser_id" value="{{ auth()->user()->id }}"> <!-- Set oppasser_id to the logged-in user -->
-    <input type="hidden" name="status" value="pending"> <!-- Assuming the default status is 'pending' -->
-
-    <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-        Meld je aan als Oppas voor dit dier
-    </button>
-</form>
+                                                <form action="{{ route('aanvragen.store', ['owner_id' => $pet->user->id]) }}" method="POST" class="mt-4">
+                                                    @csrf
+                                                    <input type="hidden" name="pet_id" value="{{ $pet->id }}">
+                                                    <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                                        Meld je aan als Oppas voor dit dier
+                                                    </button>
+                                                </form>
                                             @endif
                                         @endauth
                                     </div>

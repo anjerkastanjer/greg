@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Aanvraag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\QueryException;
 
 class AanvraagController extends Controller
 {
@@ -52,6 +51,9 @@ public function reject(Aanvraag $aanvraag)
     // Als de gebruiker geen rechten heeft, stuur ze terug met een foutmelding
     return redirect()->route('aanvragen.index')->with('error', 'Je hebt geen rechten om deze aanvraag te annuleren.');
 }
+
+
+use Illuminate\Database\QueryException;
 
 public function store(Request $request)
 {
