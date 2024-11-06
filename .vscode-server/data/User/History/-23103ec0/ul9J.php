@@ -30,8 +30,8 @@
                     </x-nav-link>
                     <!-- "Mijn Diensten" (link to aanvragen.geaccepteerd) -->
                     <x-nav-link :href="route('aanvragen.geaccepteerd')" :active="request()->routeIs('aanvragen.geaccepteerd')">
-    {{ __('Mijn Diensten') }}
-</x-nav-link>
+                        {{ __('Mijn Diensten') }}
+                    </x-nav-link>
                 </div>
             </div>
 

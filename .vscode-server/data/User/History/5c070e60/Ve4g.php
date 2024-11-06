@@ -43,14 +43,23 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Aanvragen routes
+// Toon de aanvragenpagina
 Route::get('/aanvragen', [AanvraagController::class, 'index'])->name('aanvragen.index');
 Route::post('/aanvragen/{owner_id}', [AanvraagController::class, 'store'])->name('aanvragen.store');
 Route::patch('/aanvragen/{aanvraag_id}', [AanvraagController::class, 'updateStatus'])->name('aanvragen.updateStatus');
 Route::patch('/aanvragen/{aanvraag}/accept', [AanvraagController::class, 'acceptAanvraag'])->name('aanvragen.accept');
 Route::delete('/aanvragen/{aanvraag}/reject', [AanvraagController::class, 'rejectAanvraag'])->name('aanvragen.reject');
-
-// Mijn Diensten (Geaccepteerde Aanvragen) route
 Route::get('/aanvragen/geaccepteerd', [AanvraagController::class, 'geaccepteerdeAanvragen'])->name('aanvragen.geaccepteerd');
+Route::delete('/aanvragen/{aanvraag}/reject', [AanvraagController::class, 'reject'])->name('aanvragen.reject');
+
+// mijn diensten pagina routes
+Route::get('/geaccepteerde-aanvragen', [AanvraagController::class, 'geaccepteerd-Pagina'])->name('aanvragen.geaccepteerd');
+
+
+// geaccepteerde aanvragen routes
+// mijn diensten pagina routes
+Route::get('/mijn-diensten', [AanvraagController::class, 'geaccepteerd'])->name('aanvragen.geaccepteerd');
+Route::get('/geaccepteerde-aanvragen', [AanvraagController::class, 'geaccepteerdeAanvragen'])->name('aanvragen.geaccepteerd');
 
 // Pet-related routes
 Route::resource('pets', PetController::class);

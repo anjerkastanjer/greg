@@ -35,13 +35,13 @@ class AanvraagController extends Controller
         return view('aanvragen.index', compact('binnenkomendeAanvragen', 'uitgaandeAanvragen', 'gecanceldeAanvragen'));
     }
     
-
-public function geaccepteerdeAanvragen()
+    // view returnen voor de mijn diensten pagina
+    public function geaccepteerdPagina()
 {
     // Haal geaccepteerde aanvragen op voor de oppasser
     $geaccepteerdeAanvragen = Aanvraag::where('status', 'accepted')
         ->where('oppasser_id', Auth::id())
-        ->with('pet')
+        ->with('pet') // Laad de relatie met pet
         ->get();
 
     // Toon de geaccepteerde aanvragen in de view
@@ -123,6 +123,17 @@ public function store(Request $request)
         return redirect()->route('aanvragen.index')->with('error', 'Je mag deze aanvraag niet accepteren.');
     }
 
+    public function geaccepteerdeAanvragen()
+    {
+        // Haal geaccepteerde aanvragen op voor de oppasser
+        $geaccepteerdeAanvragen = Aanvraag::where('status', 'accepted')
+            ->where('oppasser_id', Auth::id())
+            ->with('pet')
+            ->get();
+
+        // Toon de geaccepteerde aanvragen in de view
+        return view('aanvragen.geaccepteerd', compact('geaccepteerdeAanvragen'));
+    }
 
     public function rejectAanvraag($id)
     {

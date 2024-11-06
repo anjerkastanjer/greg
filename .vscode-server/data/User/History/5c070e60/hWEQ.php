@@ -52,6 +52,11 @@ Route::delete('/aanvragen/{aanvraag}/reject', [AanvraagController::class, 'rejec
 // Mijn Diensten (Geaccepteerde Aanvragen) route
 Route::get('/aanvragen/geaccepteerd', [AanvraagController::class, 'geaccepteerdeAanvragen'])->name('aanvragen.geaccepteerd');
 
+
+// geaccepteerde aanvragen routes
+// mijn diensten pagina routes
+Route::get('/mijn-diensten', [AanvraagController::class, 'geaccepteerd'])->name('aanvragen.geaccepteerd');
+
 // Pet-related routes
 Route::resource('pets', PetController::class);
 // delete huisdier/pet

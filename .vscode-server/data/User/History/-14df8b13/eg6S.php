@@ -36,18 +36,6 @@ class AanvraagController extends Controller
     }
     
 
-public function geaccepteerdeAanvragen()
-{
-    // Haal geaccepteerde aanvragen op voor de oppasser
-    $geaccepteerdeAanvragen = Aanvraag::where('status', 'accepted')
-        ->where('oppasser_id', Auth::id())
-        ->with('pet')
-        ->get();
-
-    // Toon de geaccepteerde aanvragen in de view
-    return view('aanvragen.geaccepteerd', compact('geaccepteerdeAanvragen'));
-}
-
 public function reject(Aanvraag $aanvraag)
 {
     // Controleer of de aanvraag behoort tot de ingelogde gebruiker
@@ -123,6 +111,17 @@ public function store(Request $request)
         return redirect()->route('aanvragen.index')->with('error', 'Je mag deze aanvraag niet accepteren.');
     }
 
+    public function geaccepteerdeAanvragen()
+    {
+        // Haal geaccepteerde aanvragen op voor de oppasser
+        $geaccepteerdeAanvragen = Aanvraag::where('status', 'accepted')
+            ->where('oppasser_id', Auth::id())
+            ->with('pet')
+            ->get();
+
+        // Toon de geaccepteerde aanvragen in de view
+        return view('aanvragen.geaccepteerd', compact('geaccepteerdeAanvragen'));
+    }
 
     public function rejectAanvraag($id)
     {
