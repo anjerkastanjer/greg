@@ -53,7 +53,7 @@ class OppasserController extends Controller
 
     // Decodeer de soort_dier JSON naar een array voor weergave
     if ($oppasser) {
-        $oppasser->soort_dier = json_decode($oppasser->soort_dier, true) ?? [];
+        $oppasser->soort_dier = json_decode($oppasser->soort_dier, true);
     }
 
     
@@ -66,16 +66,11 @@ class OppasserController extends Controller
 
 public function showOppassersPage()
 {
-    // Get the logged-in user's oppasser
-    $currentUserOppasser = Oppasser::where('user_id', auth()->id())->first(); 
+    $oppasser = Oppasser::where('user_id', auth()->id())->first(); // Get the logged-in user's oppasser
+    $oppassers = Oppasser::all(); // Get all oppassers for the list
 
-    // Get all oppassers for the list
-    $oppassers = Oppasser::all(); 
-
-    // Return view with updated variable name
-    return view('Oppassers', compact('currentUserOppasser', 'oppassers'));
+    return view('your-view-name', compact('oppasser', 'oppassers'));
 }
-
 
 
     /**

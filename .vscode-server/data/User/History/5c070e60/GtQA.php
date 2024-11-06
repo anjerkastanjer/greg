@@ -5,7 +5,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PetController; 
 use App\Http\Controllers\SittingRequestController;
 use App\Http\Controllers\OppasserController;
-use App\Http\Controllers\AanvraagController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pet;
 
@@ -20,9 +19,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // alle oppassers pagina route
-Route::middleware(['auth'])->group(function () {
-    Route::get('/oppassers', [OppasserController::class, 'showOppassersPage'])->name('oppassers');
-});
+Route::get('/oppassers', function () {
+    return view('Oppassers'); 
+})->middleware(['auth'])->name('oppassers');
 
 // Profile routes
 Route::middleware('auth')->group(function () {
@@ -33,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
 // Oppasser routes
 Route::middleware(['auth'])->group(function () {
+    Route::get('/oppassers', [YourController::class, 'showOppassersPage'])->name('oppassers');
     Route::get('/oppasser/create', [OppasserController::class, 'create'])->name('oppasser.create');
     Route::post('/oppasser', [OppasserController::class, 'store'])->name('oppasser.store');
     Route::get('/dashboard', [OppasserController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -40,23 +40,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/oppasser/{id}/edit', [OppasserController::class, 'edit'])->name('oppasser.edit'); // To show edit form
     Route::patch('/oppasser/{id}', [OppasserController::class, 'update'])->name('oppasser.update'); // To update oppasser
     Route::delete('/oppasser/{id}', [OppasserController::class, 'destroy'])->name('oppasser.destroy'); // To delete oppasser
+    Route::get('/oppassers', [OppasserController::class, 'showOppassersPage'])->name('oppassers.page');
 });
-
-// Aanvragen routes
-
-// Toon de aanvragenpagina
-Route::get('/aanvragen', [AanvraagController::class, 'index'])->name('aanvragen.index');
-
-// Maak een nieuwe aanvraag
-Route::post('/aanvragen/{owner_id}', [AanvraagController::class, 'store'])->name('aanvragen.store');
-
-// Werk de status van de aanvraag bij
-Route::patch('/aanvragen/{aanvraag_id}', [AanvraagController::class, 'updateStatus'])->name('aanvragen.updateStatus');
 
 // Pet-related routes
 Route::resource('pets', PetController::class);
 // delete huisdier/pet
 Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
+
 
 // jouw huisdieren pagina routes
 Route::get('/pets.index', function () {
@@ -67,11 +58,11 @@ Route::get('/pets.index', function () {
 // alle huisdieren pagina routes
 Route::get('/pets/all', [PetController::class, 'show'])->middleware(['auth'])->name('pets.all');
 Route::get('/pets/{id}', [App\Http\Controllers\PetController::class, 'show'])->name('pets.show');
-
 // User-related routes
 Route::resource('users', UserController::class);
 
 // Additional routes for navigation
+
 Route::get('/all-sitters', function () {
     return view('all-sitters'); // Create this view
 })->middleware(['auth'])->name('sitters.all');

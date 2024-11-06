@@ -53,7 +53,7 @@ class OppasserController extends Controller
 
     // Decodeer de soort_dier JSON naar een array voor weergave
     if ($oppasser) {
-        $oppasser->soort_dier = json_decode($oppasser->soort_dier, true) ?? [];
+        $oppasser->soort_dier = json_decode($oppasser->soort_dier, true);
     }
 
     

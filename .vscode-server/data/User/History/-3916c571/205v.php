@@ -16,7 +16,7 @@ class OppasserController extends Controller
         // Validatie van de invoer
         $request->validate([
             'soort_dier' => 'required|array', // Zorg ervoor dat soort_dier een array is
-            'soort_dier.*' => 'string|max:255', // Elke invoer in de array moet een string zijn
+            'soort_dier' => json_encode($request->soort_dier), // Elke invoer in de array moet een string zijn
             'loon' => 'required|numeric|min:0', // Zorg ervoor dat loon een positief nummer is
         ]);
 

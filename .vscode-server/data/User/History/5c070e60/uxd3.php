@@ -43,7 +43,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Aanvragen routes
-
 // Toon de aanvragenpagina
 Route::get('/aanvragen', [AanvraagController::class, 'index'])->name('aanvragen.index');
 

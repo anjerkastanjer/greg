@@ -5,7 +5,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PetController; 
 use App\Http\Controllers\SittingRequestController;
 use App\Http\Controllers\OppasserController;
-use App\Http\Controllers\AanvraagController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pet;
 
@@ -41,17 +40,6 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/oppasser/{id}', [OppasserController::class, 'update'])->name('oppasser.update'); // To update oppasser
     Route::delete('/oppasser/{id}', [OppasserController::class, 'destroy'])->name('oppasser.destroy'); // To delete oppasser
 });
-
-// Aanvragen routes
-
-// Toon de aanvragenpagina
-Route::get('/aanvragen', [AanvraagController::class, 'index'])->name('aanvragen.index');
-
-// Maak een nieuwe aanvraag
-Route::post('/aanvragen/{owner_id}', [AanvraagController::class, 'store'])->name('aanvragen.store');
-
-// Werk de status van de aanvraag bij
-Route::patch('/aanvragen/{aanvraag_id}', [AanvraagController::class, 'updateStatus'])->name('aanvragen.updateStatus');
 
 // Pet-related routes
 Route::resource('pets', PetController::class);
