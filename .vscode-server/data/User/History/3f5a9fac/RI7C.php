@@ -61,7 +61,7 @@
                             </div>
                         @endauth
 
-                        <h3 class="mt-6 text-lg font-semibold">Lijst van Alle Huisdieren die een oppas zoeken</h3>
+                        <h3 class="mt-6 text-lg font-semibold">Lijst van Alle Huisdieren</h3>
                         <ul class="mt-4">
                             @foreach ($allPets as $pet)
                                 <li class="mb-4 p-4 border-b border-gray-300">

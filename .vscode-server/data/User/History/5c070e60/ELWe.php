@@ -43,9 +43,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Aanvragen routes
+
 // Toon de aanvragenpagina
 Route::get('/aanvragen', [AanvraagController::class, 'index'])->name('aanvragen.index');
+
+// Maak een nieuwe aanvraag
 Route::post('/aanvragen/{owner_id}', [AanvraagController::class, 'store'])->name('aanvragen.store');
+
+// Werk de status van de aanvraag bij
 Route::patch('/aanvragen/{aanvraag_id}', [AanvraagController::class, 'updateStatus'])->name('aanvragen.updateStatus');
 
 // Pet-related routes

@@ -22,7 +22,7 @@
                         <!-- Button to add a new pet (for authenticated users) -->
                         @auth
                             <button id="toggle-form" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                Eigen Huisdier Toevoegen
+                                Huisdier Toevoegen
                             </button>
 
                             <!-- Form for adding a new pet -->
@@ -61,7 +61,7 @@
                             </div>
                         @endauth
 
-                        <h3 class="mt-6 text-lg font-semibold">Lijst van Alle Huisdieren die een oppas zoeken</h3>
+                        <h3 class="mt-6 text-lg font-semibold">Lijst van Alle Huisdieren</h3>
                         <ul class="mt-4">
                             @foreach ($allPets as $pet)
                                 <li class="mb-4 p-4 border-b border-gray-300">
@@ -80,11 +80,10 @@
                                         <!-- Button for 'Meld je aan als Oppas' (Apply as a Pet Sitter) -->
                                         @auth
                                             @if ($pet->user->id !== auth()->user()->id) <!-- Only show button for pets not owned by the logged-in user -->
-                                                <form action="{{ route('aanvragen.store', ['owner_id' => $pet->user->id]) }}" method="POST" class="mt-4">
+                                                <form action="{{ route('aanvragen.store') }}" method="POST" class="mt-4">
                                                     @csrf
                                                     <input type="hidden" name="pet_id" value="{{ $pet->id }}">
-                                                    <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                                        Meld je aan als Oppas voor dit dier</button>
+                                                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md">Meld je aan als Oppas</button>
                                                 </form>
                                             @endif
                                         @endauth
