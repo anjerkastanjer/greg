@@ -51,9 +51,8 @@ Route::patch('/aanvragen/{aanvraag}/accept', [AanvraagController::class, 'accept
 Route::delete('/aanvragen/{aanvraag}/reject', [AanvraagController::class, 'rejectAanvraag'])->name('aanvragen.reject');
 Route::get('/aanvragen/geaccepteerd', [AanvraagController::class, 'geaccepteerdeAanvragen'])->name('aanvragen.geaccepteerd');
 
-// geaccepteerde aanvragen routes
-// mijn diensten pagina routes
-Route::get('/mijn-diensten', [AanvraagController::class, 'geaccepteerd'])->name('aanvragen.geaccepteerd');
+
+//mijn diensten routes
 Route::get('/geaccepteerde-aanvragen', [AanvraagController::class, 'geaccepteerdeAanvragen'])->name('aanvragen.geaccepteerd');
 
 // Pet-related routes

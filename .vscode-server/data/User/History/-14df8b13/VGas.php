@@ -61,13 +61,13 @@ public function acceptAanvraag($id)
 
 public function geaccepteerdeAanvragen()
 {
-    $geaccepteerdeAanvragen = Aanvraag::where('status', 'accepted')
-        ->where('oppasser_id', Auth::id()) // Alleen de oppasser kan de geaccepteerde aanvragen zien
+    // Verkrijg alleen de geaccepteerde aanvragen voor de ingelogde oppasser
+    $geaccepteerdeAanvragen = Aanvraag::where('oppasser_id', Auth::id())
+        ->where('status', 'accepted')
         ->get();
 
     return view('aanvragen.geaccepteerd', compact('geaccepteerdeAanvragen'));
 }
-
 
 // Reject the aanvraag (delete or set status to 'rejected')
 public function rejectAanvraag($id)

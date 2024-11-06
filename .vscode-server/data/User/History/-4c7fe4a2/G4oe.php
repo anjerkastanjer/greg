@@ -15,7 +15,7 @@
                         </div>
                     @endif
 
-                    <h3 class="text-lg font-semibold">Lijst van Mijn binnenkomende Aanvragen</h3>
+                    <h3 class="text-lg font-semibold">Lijst van Mijn Aanvragen</h3>
 
                     <ul>
                         @foreach ($aanvragen as $aanvraag)

@@ -49,25 +49,21 @@ public function acceptAanvraag($id)
         $aanvraag->status = 'accepted';
         $aanvraag->save();
 
-        // Zorg ervoor dat de aanvraag naar de geaccepteerde lijst van de oppasser wordt gestuurd
-        // (de logica voor het verplaatsen van de aanvraag naar de lijst van de oppasser)
-        // Bijvoorbeeld door de status te controleren in een andere view
-        return redirect()->route('aanvragen.geaccepteerd')->with('success', 'Aanvraag geaccepteerd!');
+        return redirect()->route('aanvragen.index')->with('success', 'Aanvraag geaccepteerd!');
     }
 
     return redirect()->route('aanvragen.index')->with('error', 'Je mag deze aanvraag niet accepteren.');
 }
 
-
 public function geaccepteerdeAanvragen()
 {
-    $geaccepteerdeAanvragen = Aanvraag::where('status', 'accepted')
-        ->where('oppasser_id', Auth::id()) // Alleen de oppasser kan de geaccepteerde aanvragen zien
+    // Verkrijg alleen de geaccepteerde aanvragen voor de ingelogde oppasser
+    $geaccepteerdeAanvragen = Aanvraag::where('oppasser_id', Auth::id())
+        ->where('status', 'accepted')
         ->get();
 
     return view('aanvragen.geaccepteerd', compact('geaccepteerdeAanvragen'));
 }
-
 
 // Reject the aanvraag (delete or set status to 'rejected')
 public function rejectAanvraag($id)
