@@ -30,7 +30,7 @@
                             <p class="font-bold">{{ __("Je hebt je succesvol aangemeld als oppasser. Hier zijn je gegevens:") }}</p>
                             <strong>Naam:</strong> {{ $oppasser->naam }} <br>
                             <strong>Soort Dier:</strong> {{ implode(', ', $oppasser->soort_dier) }} <br>
-                            <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
+                            <strong>Minimale Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
 
                             <!-- Verwijderknop voor deze oppasser -->
                             <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2 text-center">
@@ -46,7 +46,7 @@
                                 @csrf
 
                                 <div class="mb-4">
-                                    <label for="soort_dier" class="block text-white">Diersoort waar je op zou willen passen</label>
+                                    <label for="soort_dier" class="block text-white">Diersoorten waar je op zou willen passen</label>
                                     <div class="flex justify-center items-center">
                                         <input type="text" name="soort_dier[]" id="soort_dier" required class="mt-1 block w-full sm:w-1/2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-white" style="color: black;">
                                         <button type="button" id="add-animal-button" class="ml-2 px-2 py-1 border border-black rounded-md text-white bg-blue-600 hover:bg-blue-700">
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="loon" class="block text-white">Prijs per uur (€)</label>
+                                    <label for="loon" class="block text-white">Minimale Prijs per uur (€)</label>
                                     <input type="text" name="loon" id="loon" required class="mt-1 block w-full sm:w-1/2 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-white" style="color: black;">
                                 </div>
 

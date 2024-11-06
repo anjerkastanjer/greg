@@ -22,27 +22,59 @@ class AanvraagController extends Controller
         ->with('pet') // Laad de pet relatie
         ->get();
 
-    return view('aanvragen.index', compact('binnenkomendeAanvragen', 'uitgaandeAanvragen'));
+        // Haal de gecancelde aanvragen op voor de ingelogde gebruiker
+        $gecanceldeAanvragen = Aanvraag::where('owner_id', Auth::id())
+            ->where('status', 'geannulleerd') // Alleen gecancelde aanvragen
+            ->with('pet') // Laad de pet relatie
+            ->get();
+    
+        // Dit zou de gecancelde aanvragen moeten ophalen en naar de view sturen
+        return view('aanvragen.index', compact('binnenkomendeAanvragen', 'uitgaandeAanvragen', 'gecanceldeAanvragen'));
 }
 
 
-    public function store(Request $aanvraag, $owner_id)
-    {
-        // Valideer het pet_id
-        $aanvraag->validate([
-            'pet_id' => 'required|exists:pets,id',
+    public function reject(Aanvraag $aanvraag)
+{
+    // Controleer of de aanvraag behoort tot de ingelogde gebruiker
+    if ($aanvraag->owner_id === Auth::id() || $aanvraag->oppasser_id === Auth::id()) {
+        // Zet de status op 'geannulleerd' in plaats van 'rejected'
+        $aanvraag->update([
+            'status' => 'geannulleerd'
         ]);
 
-        // Maak een nieuwe aanvraag aan
-        Aanvraag::create([
-            'oppasser_id' => Auth::id(),
-            'owner_id' => $owner_id,
-            'pet_id' => $aanvraag->pet_id,
-            'status' => 'pending',
+        // Optioneel: geef een succesmelding terug
+        return redirect()->route('aanvragen.index')->with('success', 'De aanvraag is geannuleerd.');
+    }
+
+    // Als de gebruiker geen rechten heeft, stuur ze terug met een foutmelding
+    return redirect()->route('aanvragen.index')->with('error', 'Je hebt geen rechten om deze aanvraag te annuleren.');
+}
+
+
+public function store(Request $request)
+{
+    // Validate the aanvraag
+    $validatedData = $request->validate([
+        'pet_id' => 'required|exists:pets,id', // Ensure pet exists
+        'oppasser_id' => 'required|exists:users,id', // Ensure oppasser exists
+        'owner_id' => 'required|exists:users,id', // Ensure owner exists
+        'status' => 'required|string', // Validate status
         ]);
 
-        // Geef een succesbericht terug
-        return back()->with('success', 'Je hebt je succesvol aangemeld om op dit dier te passen, wacht de eigenaar af om deze aanvraag te accepteren');
+    // Check if the current user has already made a request for this pet
+    $existingAanvraag = Aanvraag::where('pet_id', $validatedData['pet_id'])
+                                ->where('owner_id', auth()->id()) // Ensure the current user is the owner
+                                ->where('status', '!=', 'accepted') // Prevent requests that are already accepted
+                                ->exists();
+
+    if ($existingAanvraag) {
+        return redirect()->back()->with('error', 'Je hebt al een aanvraag gedaan voor dit huisdier.');
+    }
+
+    // Create the new aanvraag
+    Aanvraag::create($validatedData);
+
+    return redirect()->route('aanvragen.index')->with('success', 'Aanvraag succesvol ingediend!');
     }
 
     public function acceptAanvraag($id)

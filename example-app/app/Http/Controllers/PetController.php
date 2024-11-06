@@ -3,35 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pet; // Make sure the namespace is correct
+use App\Models\Pet; // Zorg ervoor dat de namespace correct is
 
 class PetController extends Controller
 {
-    // Display a listing of the pets for the logged-in user
-    // pagina van jouw huisdieren om de gebruikers huisdieren te tonen
+    // Toon de huisdieren van de ingelogde gebruiker
     public function index()
 {
-    // Retrieve pets belonging to the authenticated user
-    $pets = Pet::where('user_id', auth()->id())->get(); // Use 'user_id' to fetch pets
-    return view('Pets.index', compact('pets')); // Passes the pets to the view
+        // Haal huisdieren op die bij de ingelogde gebruiker horen
+        $pets = Pet::where('user_id', auth()->id())->get(); // Gebruik 'user_id' om huisdieren op te halen
+        return view('Pets.index', compact('pets')); // Geeft de huisdieren door aan de view
 }
 
-    // functie om alle pets te tonen
+    // Toon alle huisdieren van alle gebruikers
     public function show()
     {
         $allPets = Pet::all(); // Haalt alle huisdieren op
         return view('pets.all', compact('allPets')); // Geeft alle huisdieren door aan de view
     }
 
-
-    // Store a newly created pet
+    // Opslaan van een nieuw huisdier
     public function store(Request $request)
     {
-        // Validate and create pet
+        // Valideer en maak het huisdier aan
     $validatedData = $request->validate([
         'naam' => 'required|string|max:255',
         'soort' => 'required|string|max:255',
-        'loon_per_uur' => 'required|numeric|between:0,9999.99', // Corrected to numeric validation
+            'loon_per_uur' => 'required|numeric|between:0,9999.99', // Correcte validatie voor numerieke waarden
         'start_date' => 'required|date',
     ]);
 

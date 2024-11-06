@@ -50,9 +50,7 @@ Route::patch('/aanvragen/{aanvraag_id}', [AanvraagController::class, 'updateStat
 Route::patch('/aanvragen/{aanvraag}/accept', [AanvraagController::class, 'acceptAanvraag'])->name('aanvragen.accept');
 Route::delete('/aanvragen/{aanvraag}/reject', [AanvraagController::class, 'rejectAanvraag'])->name('aanvragen.reject');
 Route::get('/aanvragen/geaccepteerd', [AanvraagController::class, 'geaccepteerdeAanvragen'])->name('aanvragen.geaccepteerd');
-Route::patch('/aanvragen/{aanvraag}/accept', [AanvraagController::class, 'acceptAanvraag'])->name('aanvragen.accept');
-Route::delete('/aanvragen/{aanvraag}/reject', [AanvraagController::class, 'rejectAanvraag'])->name('aanvragen.reject');
-
+Route::delete('/aanvragen/{aanvraag}/reject', [AanvraagController::class, 'reject'])->name('aanvragen.reject');
 
 
 // geaccepteerde aanvragen routes

@@ -15,10 +15,10 @@
                         </div>
                     @endif
 
-                    <!-- Flexbox container voor twee kolommen -->
+                    <!-- Flexbox container voor drie kolommen -->
                     <div class="flex justify-between mb-8">
                         <!-- Binnenkomende aanvragen aan de linkerkant -->
-                        <div class="w-1/2 pr-4">
+                        <div class="w-1/3 pr-4">
                             <h3 class="text-lg font-semibold">Lijst van Mijn Binnenkomende Aanvragen</h3>
                             <ul>
                                 @foreach ($binnenkomendeAanvragen as $aanvraag)
@@ -33,7 +33,7 @@
                                             <form action="{{ route('aanvragen.accept', $aanvraag->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('PATCH')
-                                                <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Accepteren</button>
+                                                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Accepteren</button>
                                             </form>
                                             <form action="{{ route('aanvragen.reject', $aanvraag->id) }}" method="POST" style="display:inline;">
                                                 @csrf
@@ -46,8 +46,23 @@
                             </ul>
                         </div>
 
+                        <!-- Gecancelde aanvragen in het midden -->
+                        <div class="w-1/3 px-4">
+                            <h3 class="text-lg font-semibold">Mijn Gecancelde Aanvragen</h3>
+                            <ul>
+                                @foreach ($gecanceldeAanvragen as $aanvraag)
+                                    <li class="mb-4">
+                                        <strong>Eigenaar:</strong> {{ $aanvraag->owner->name }} <br>
+                                        <strong>Huisdier Naam:</strong> {{ $aanvraag->pet->naam }} <br>
+                                        <strong>Uurloon:</strong> €{{ number_format($aanvraag->pet->loon_per_uur, 2) }} <br>
+                                        <strong>Status:</strong> {{ ucfirst($aanvraag->status) }} <br>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+
                         <!-- Uitgaande aanvragen aan de rechterkant -->
-                        <div class="w-1/2 pl-4">
+                        <div class="w-1/3 pl-4">
                             <h3 class="text-lg font-semibold">Mijn Uitgaande Aanvragen</h3>
                             <ul>
                                 @foreach ($uitgaandeAanvragen as $aanvraag)
