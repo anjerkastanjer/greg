@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="text-center">
-                        <p>{{ __("Welkom op mijn pagina! Ik ben blij dat je je hebt aangemeld. Op deze pagina kun je je huisdieren in ons systeem zetten.") }}</p>
+                        <p>{{ __("Welkom op mijn pagina! ik ben blij dat je je hebt aangemeld, op deze pagina kun je je huisdieren in ons systeem zetten.") }}</p>
 
                         <!-- Display success message -->
                         @if (session('success'))
@@ -60,24 +60,24 @@
                         </div>
 
                         <h3 class="mt-6 text-lg font-semibold">Lijst van jouw Huisdieren</h3>
-                        <ul class="mt-4">
-                            @foreach ($pets as $pet)
-                                <li class="mb-6 border-b-2 border-gray-300 pb-4">
-                                    <strong>Naam:</strong> {{ $pet->naam }} <br>
-                                    <strong>Soort:</strong> {{ $pet->soort }} <br>
-                                    <strong>Prijs per uur:</strong> €{{ $pet->loon_per_uur }} <br>
-                                    <strong>Begindatum:</strong> {{ $pet->start_date }} <br>
-                                    <strong>Eigenaar:</strong> Jij <!-- Indicate that the user is the owner -->
-                                    
-                                    <!-- Form to delete the pet -->
-                                    <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" class="mt-2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md mb-4">Verwijderen</button>
-                                    </form>
-                                </li>
-                            @endforeach
-                        </ul>
+<ul class="mt-4">
+    @foreach ($pets as $pet)
+        <li class="mb-2">
+            <strong>Naam:</strong> {{ $pet->naam }} <br>
+            <strong>Soort:</strong> {{ $pet->soort }} <br>
+            <strong>Prijs per uur:</strong> €{{ $pet->loon_per_uur }} <br>
+            <strong>Begindatum:</strong> {{ $pet->start_date }} <br>
+            <strong>Eigenaar:</strong> Jij <!-- Indicate that the user is the owner -->
+            
+            <!-- Form to delete the pet -->
+            <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" class="mt-2">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md mb-4">Verwijderen</button>
+            </form>
+        </li>
+    @endforeach
+</ul>
                     </div>
                 </div>
             </div>

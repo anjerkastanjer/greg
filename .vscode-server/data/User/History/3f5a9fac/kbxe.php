@@ -70,16 +70,11 @@
                                         <strong>Soort:</strong> {{ $pet->soort }} <br>
                                         <strong>Prijs per uur:</strong> €{{ $pet->loon_per_uur }} <br>
                                         <strong>Begindatum:</strong> {{ $pet->start_date }} <br>
-                                        <strong>Eigenaar:</strong> 
-                                        @if ($pet->user)
-                                            {{ $pet->user->name }} <!-- Display the pet's owner's name -->
-                                        @else
-                                            Onbekend
-                                        @endif
+                                        <strong>Eigenaar:</strong> {{ $pet->owner->name }} <!-- Display the pet's owner's name -->
 
                                         <!-- If the pet belongs to the current user, show the delete button -->
                                         @auth
-                                            @if ($pet->user->id === auth()->user()->id)
+                                            @if ($pet->owner->id === auth()->user()->id)
                                                 <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" class="mt-2">
                                                     @csrf
                                                     @method('DELETE')

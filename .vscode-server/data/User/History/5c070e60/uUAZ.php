@@ -47,20 +47,20 @@ Route::resource('pets', PetController::class);
 // delete huisdier/pet
 Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
 
-
-// jouw huisdieren pagina routes
 Route::get('/pets.index', function () {
     $pets = Pet::where('user_id', auth()->id())->get(); // Fetch only pets for the authenticated user
     return view('pets.index', compact('pets')); // Pass the user's pets to the view
 })->middleware(['auth'])->name('pets.index');
 
-// alle huisdieren pagina routes
-Route::get('/pets/all', [PetController::class, 'show'])->middleware(['auth'])->name('pets.all');
-Route::get('/pets/{id}', [App\Http\Controllers\PetController::class, 'show'])->name('pets.show');
+
 // User-related routes
 Route::resource('users', UserController::class);
 
 // Additional routes for navigation
+
+Route::get('/all-pets', function () {
+    return view('all-pets'); // Create this view
+})->middleware(['auth'])->name('all.pets');
 
 Route::get('/all-sitters', function () {
     return view('all-sitters'); // Create this view

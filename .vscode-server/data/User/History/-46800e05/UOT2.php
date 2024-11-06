@@ -17,7 +17,7 @@ class PetController extends Controller
 }
 
     // functie om alle pets te tonen
-    public function show()
+    public function showAllPets()
     {
         $allPets = Pet::all(); // Haalt alle huisdieren op
         return view('pets.all', compact('allPets')); // Geeft alle huisdieren door aan de view

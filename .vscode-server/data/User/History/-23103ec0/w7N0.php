@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('pets.index')" :active="request()->routeIs('pets.index')"> <!-- Corrected route name -->
                         {{ __('Jouw Huisdieren') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('pets.all')" :active="request()->routeIs('pets.all')"> <!-- Corrected route name -->
+                    <x-nav-link :href="route('all.pets')" :active="request()->routeIs('all.pets')"> <!-- Corrected route name -->
                         {{ __('Alle Huisdieren') }}
                     </x-nav-link>
                     <x-nav-link :href="route('oppassers')" :active="request()->routeIs('oppassers')">
@@ -83,7 +83,7 @@
             <x-responsive-nav-link :href="route('pets.index')" :active="request()->routeIs('pets.index')"> <!-- Corrected route name -->
                 {{ __('Jouw Huisdieren') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('pets.all')" :active="request()->routeIs('pets.all')"> <!-- Corrected route name -->
+            <x-responsive-nav-link :href="route('all.pets')" :active="request()->routeIs('all.pets')"> <!-- Corrected route name -->
                 {{ __('Alle Huisdieren') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('oppassers')" :active="request()->routeIs('oppassers')">

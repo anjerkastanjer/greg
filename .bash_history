@@ -161,3 +161,58 @@ php artisan serve
 php artisan migrate:rollback
 php artisan migrate
 php artisan serve
+cd example-app/
+php artisan serve
+mysql
+php artisan serve
+php artisan make:controller OppasserController
+php artisan serve
+mysql
+php artisan migrate
+mysql
+php artisan migrate:rollback
+php artisan migrate
+mysql
+php artisan migrate:rollback
+php artisan migrate
+mysql
+php artisan migrate
+mysql
+mysql -u root -p
+mysql -u Titus_user -p
+mysql
+mysql -u Titus_user -p
+mysql -u root -p
+mysql -u Titus_user -p
+mysql -u root -p
+php artisan migrate:rollback
+php artisan migrate
+mysql -u root -p
+php artisan make:model Oppasser
+php artisan serve
+MYSQL
+mysql
+mysql -u root -p
+php artisan serve
+mysql -u root -p
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve

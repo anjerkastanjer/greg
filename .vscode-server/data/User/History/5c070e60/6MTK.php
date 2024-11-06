@@ -55,7 +55,9 @@ Route::get('/pets.index', function () {
 })->middleware(['auth'])->name('pets.index');
 
 // alle huisdieren pagina routes
-Route::get('/pets/all', [PetController::class, 'show'])->middleware(['auth'])->name('pets.all');
+Route::get('/pets/all', function () {
+    return view('pets.all'); // Zorg ervoor dat het bestand pets/all.blade.php correct is aangemaakt
+})->middleware(['auth'])->name('pets.all');
 Route::get('/pets/{id}', [App\Http\Controllers\PetController::class, 'show'])->name('pets.show');
 // User-related routes
 Route::resource('users', UserController::class);
