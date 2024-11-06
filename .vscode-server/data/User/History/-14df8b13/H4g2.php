@@ -40,5 +40,4 @@ class AanvraagController extends Controller
     return back()->with('success', 'Je hebt je succesvol aangemeld om op dit dier te passen, wacht de eigenaar af om deze aanvraag te accepteren');
 }
 
-
 }

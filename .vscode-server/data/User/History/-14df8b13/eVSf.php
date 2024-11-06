@@ -26,6 +26,8 @@ class AanvraagController extends Controller
     // Validate the request
     $request->validate([
         'pet_id' => 'required|exists:pets,id', // Validate that the pet exists
+        'success' => 'Je hebt je succesvol aangemeld om op dit dier te passen, wacht de eigenaar af om deze aanvraag te accepteren.',
+        'pet_id' => $request->pet_id, // Store the pet_id to match the success message
     ]);
 
     // Create a new aanvraag (request)
@@ -39,6 +41,5 @@ class AanvraagController extends Controller
     // Return with a success message and stay on the same page
     return back()->with('success', 'Je hebt je succesvol aangemeld om op dit dier te passen, wacht de eigenaar af om deze aanvraag te accepteren');
 }
-
 
 }

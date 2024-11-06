@@ -12,13 +12,6 @@
                     <div class="text-center">
                         <p>{{ __("Welkom op de pagina met alle huisdieren!") }}</p>
 
-                        <!-- Display success message -->
-                        @if (session('success'))
-                            <div class="mb-4 text-green-600">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
                         <!-- Button to add a new pet (for authenticated users) -->
                         @auth
                             <button id="toggle-form" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
@@ -84,8 +77,16 @@
                                                     @csrf
                                                     <input type="hidden" name="pet_id" value="{{ $pet->id }}">
                                                     <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                                        Meld je aan als Oppas voor dit dier</button>
+                                                        Meld je aan als Oppas voor dit dier
+                                                    </button>
                                                 </form>
+
+                                                <!-- Success message (displayed only after submitting the form) -->
+                                                @if (session('success') && session('pet_id') == $pet->id)
+                                                    <div class="mt-4 text-green-600">
+                                                        {{ session('success') }}
+                                                    </div>
+                                                @endif
                                             @endif
                                         @endauth
 

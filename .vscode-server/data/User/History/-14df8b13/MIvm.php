@@ -21,23 +21,23 @@ class AanvraagController extends Controller
     }
 
     // Maak een nieuwe aanvraag (not used in the view now, as status update is handled separately)
-    public function store(Request $request, $owner_id)
+    public function store(Request $request)
 {
-    // Validate the request
-    $request->validate([
-        'pet_id' => 'required|exists:pets,id', // Validate that the pet exists
+    // Validate the request data
+    $validated = $request->validate([
+        'pet_id' => 'required|exists:pets,id',
+        'owner_id' => 'required|exists:users,id',
     ]);
 
-    // Create a new aanvraag (request)
-    Aanvraag::create([
-        'oppasser_id' => Auth::id(),
-        'owner_id' => $owner_id,
-        'pet_id' => $request->pet_id,
-        'status' => 'pending',
-    ]);
+    // If validation passes, create a new aanvraag (application)
+    $aanvraag = new Aanvraag();
+    $aanvraag->pet_id = $request->pet_id;
+    $aanvraag->owner_id = $request->owner_id;
+    $aanvraag->user_id = auth()->user()->id; // Add user_id as the logged-in user
+    $aanvraag->save();
 
-    // Return with a success message and stay on the same page
-    return back()->with('success', 'Je hebt je succesvol aangemeld om op dit dier te passen, wacht de eigenaar af om deze aanvraag te accepteren');
+    // Set a success message to be shown on the frontend
+    return redirect()->back()->with('success', 'Je hebt je succesvol aangemeld om op dit dier te passen!');
 }
 
 

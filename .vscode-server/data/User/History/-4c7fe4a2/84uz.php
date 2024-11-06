@@ -26,7 +26,7 @@
                                 
                                 @if ($aanvraag->owner_id == Auth::id()) <!-- Alleen de eigenaar kan de status bewerken -->
                                 <form action="{{ route('aanvragen.updateStatus', $aanvraag->id) }}" method="POST">
-                                    @csrf
+    @csrf
     @method('PATCH')
     <label for="status">Wijzig Status:</label>
     <select name="status" id="status">

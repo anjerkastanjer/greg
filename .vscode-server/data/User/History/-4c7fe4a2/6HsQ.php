@@ -25,17 +25,16 @@
                                 <strong>Status:</strong> {{ ucfirst($aanvraag->status) }} <br>
                                 
                                 @if ($aanvraag->owner_id == Auth::id()) <!-- Alleen de eigenaar kan de status bewerken -->
-                                <form action="{{ route('aanvragen.updateStatus', $aanvraag->id) }}" method="POST">
-                                    @csrf
-    @method('PATCH')
-    <label for="status">Wijzig Status:</label>
-    <select name="status" id="status">
-        <option value="pending" {{ $aanvraag->status == 'pending' ? 'selected' : '' }}>Pending</option>
-        <option value="accepted" {{ $aanvraag->status == 'accepted' ? 'selected' : '' }}>Geaccepteerd</option>
-        <option value="rejected" {{ $aanvraag->status == 'rejected' ? 'selected' : '' }}>Afgewezen</option>
-    </select>
-    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Opslaan</button>
-</form>
+                                    <form action="{{ route('aanvragen.store', $aanvraag->owner_id) }}" method="POST">
+                                        @csrf
+                                        <label for="status">Wijzig Status:</label>
+                                        <select name="status" id="status">
+                                            <option value="pending" {{ $aanvraag->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="accepted" {{ $aanvraag->status == 'accepted' ? 'selected' : '' }}>Geaccepteerd</option>
+                                            <option value="rejected" {{ $aanvraag->status == 'rejected' ? 'selected' : '' }}>Afgewezen</option>
+                                        </select>
+                                        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Opslaan</button>
+                                    </form>
                                 @endif
                             </li>
                         @endforeach
