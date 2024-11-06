@@ -70,7 +70,7 @@
 
                     <!-- List van oppassers -->
                     <div class="text-center mt-8">
-                        <h3 class="text-lg font-semibold">Lijst van andere Oppassers</h3>
+                        <h3 class="text-lg font-semibold">Lijst van Oppassers</h3>
                         <ul class="mt-4">
                             @foreach ($oppassers as $oppasser)
                                 @if (auth()->check() && ($oppasser->user_id !== auth()->id())) <!-- Skip the current user's oppasser -->

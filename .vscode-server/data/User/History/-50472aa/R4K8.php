@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            <!-- Header content kan hier komen -->
+            <!-- Header content can go here -->
         </h2>
     </x-slot>
 
@@ -9,30 +9,24 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <!-- Welkomsttekst en knop voor aanmelden -->
+                    <!-- Centering the welcome text and button -->
                     <div class="text-center mb-6">
-                        <p>{{ __("Welkom op mijn pagina! Ik ben blij dat je je hebt aangemeld. Op deze pagina kun je je aanmelden als oppasser.") }}</p>
+                        <p>{{ __("Welkom op mijn pagina! ik ben blij dat je je hebt aangemeld, op deze pagina kun je je aanmelden als oppasser ") }}</p>
 
-                        @if ($oppasser)
-                            <!-- Als de gebruiker al een oppasser is -->
-                            <p class="mt-4 text-red-600 font-bold text-lg">
-    Je bent al aangemeld als oppasser, verwijder jezelf om jezelf opnieuw aan te melden.</p>
-                        @else
-                            <button id="toggle-oppasser-form" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                Oppasser Aanmelden
-                            </button>
-                        @endif
+                        <button id="toggle-oppasser-form" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Oppasser Aanmelden
+                        </button>
                     </div>
 
                     @if ($oppasser)
-                        <!-- Gegevens van de gebruiker die al een oppasser is -->
+                        <!-- Displaying that the user is already a pet sitter -->
                         <div class="text-center mb-6">
                             <p class="font-bold">{{ __("Je hebt je succesvol aangemeld als oppasser. Hier zijn je gegevens:") }}</p>
                             <strong>Naam:</strong> {{ $oppasser->naam }} <br>
                             <strong>Soort Dier:</strong> {{ implode(', ', $oppasser->soort_dier) }} <br>
                             <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
 
-                            <!-- Verwijderknop voor deze oppasser -->
+                            <!-- Optional delete button for this oppasser -->
                             <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2 text-center">
                                 @csrf
                                 @method('DELETE')
@@ -40,7 +34,7 @@
                             </form>
                         </div>
                     @else
-                        <!-- Formulier voor aanmelden als oppasser -->
+                        <!-- Form for adding a new oppasser -->
                         <div id="oppasser-form" class="hidden mt-4 text-center">
                             <form action="{{ route('oppasser.store') }}" method="POST">
                                 @csrf
@@ -68,9 +62,9 @@
                         </div>
                     @endif
 
-                    <!-- List van oppassers -->
+                    <!-- Centering the list of oppassers -->
                     <div class="text-center mt-8">
-                        <h3 class="text-lg font-semibold">Lijst van andere Oppassers</h3>
+                        <h3 class="text-lg font-semibold">Lijst van Oppassers</h3>
                         <ul class="mt-4">
                             @foreach ($oppassers as $oppasser)
                                 @if (auth()->check() && ($oppasser->user_id !== auth()->id())) <!-- Skip the current user's oppasser -->
@@ -80,7 +74,7 @@
                                         <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
                                         <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
 
-                                        <!-- Verwijderknop voor elke oppasser -->
+                                        <!-- Optional delete form for each oppasser -->
                                         <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2 text-center">
                                             @csrf
                                             @method('DELETE')
