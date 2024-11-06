@@ -1,0 +1,4 @@
+_HiStOrY_V2_
+DB::table('aanvragen')->truncate();
+DB::table('aanvragen')->truncate();
+exit

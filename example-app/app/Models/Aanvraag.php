@@ -10,10 +10,11 @@ class Aanvraag extends Model
     use HasFactory;
     protected $table = 'aanvragen';
 
-    // Vul de velden die massaal toewijsbaar zijn
+    
     protected $fillable = [
         'oppasser_id',
         'owner_id',
+        'pet_id',
         'status',
     ];
 
@@ -27,4 +28,10 @@ class Aanvraag extends Model
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
+
+    public function pet()
+    {
+    return $this->belongsTo(Pet::class, 'pet_id');
+    }
+
 }

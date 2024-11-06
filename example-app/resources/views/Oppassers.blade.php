@@ -38,13 +38,11 @@
                             <ul class="mt-4">
                                 @foreach ($oppassers as $oppasser)
                                     @if (auth()->check() && ($oppasser->user_id !== auth()->id())) <!-- Skip the current user's sitter -->
-                                        <li class="mb-4">
+                                        <li class="mb-4 border-b-2 border-gray-200 pb-4">
                                             <strong>Naam:</strong> {{ $oppasser->naam }} <br>
                                             <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
                                             <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
                                             <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
-
-                                            <!-- Do not show the delete button for other sitters -->
                                         </li>
                                     @endif
                                 @endforeach

@@ -22,6 +22,8 @@
                             <li class="mb-4">
                                 <strong>Oppasser:</strong> {{ $aanvraag->oppasser->name }} <br>
                                 <strong>Eigenaar:</strong> {{ $aanvraag->owner->name }} <br>
+                                <strong>Huisdier Naam:</strong> {{ $aanvraag->pet->naam }} <br>
+                                <strong>Uurloon:</strong> €{{ number_format($aanvraag->pet->loon_per_uur, 2) }} <br>
                                 <strong>Status:</strong> {{ ucfirst($aanvraag->status) }} <br>
                                 
                                 @if ($aanvraag->owner_id == Auth::id()) <!-- Alleen de eigenaar kan de status bewerken -->
@@ -37,7 +39,7 @@
                                         <form action="{{ route('aanvragen.reject', $aanvraag->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Afwijzen</button>
+                                            <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Afwijzen</button>
                                         </form>
                                     </div>
                                 @endif

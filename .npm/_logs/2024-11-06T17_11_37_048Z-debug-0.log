@@ -1,0 +1,59 @@
+0 verbose cli /home/greg/.nvm/versions/node/v20.17.0/bin/node /home/greg/.nvm/versions/node/v20.17.0/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.17.0
+3 silly config load:file:/home/greg/.nvm/versions/node/v20.17.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/greg/.cache/typescript/5.6/.npmrc
+5 silly config load:file:/home/greg/.npmrc
+6 silly config load:file:/home/greg/.nvm/versions/node/v20.17.0/etc/npmrc
+7 verbose title npm install @types/node@ts5.6 @types/vscode@ts5.6
+8 verbose argv "install" "--ignore-scripts" "@types/node@ts5.6" "@types/vscode@ts5.6" "--save-dev" "--user-agent" "typesInstaller/5.6.3"
+9 verbose logfile logs-max:10 dir:/home/greg/.npm/_logs/2024-11-06T17_11_37_048Z-
+10 verbose logfile /home/greg/.npm/_logs/2024-11-06T17_11_37_048Z-debug-0.log
+11 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+12 silly logfile done cleaning log files
+13 silly packumentCache corgi:https://registry.npmjs.org/@types%2fnode cache-miss
+14 silly packumentCache corgi:https://registry.npmjs.org/@types%2fvscode cache-miss
+15 http fetch GET 200 https://registry.npmjs.org/@types%2fnode 294ms (cache miss)
+16 silly packumentCache corgi:https://registry.npmjs.org/@types%2fnode set size:undefined disposed:false
+17 http fetch GET 200 https://registry.npmjs.org/@types%2fvscode 1247ms (cache miss)
+18 silly packumentCache corgi:https://registry.npmjs.org/@types%2fvscode set size:undefined disposed:false
+19 silly idealTree buildDeps
+20 silly fetch manifest @types/node@22.9.0
+21 silly packumentCache full:https://registry.npmjs.org/@types%2fnode cache-miss
+22 http fetch GET 200 https://registry.npmjs.org/@types%2fnode 248ms (cache updated)
+23 silly packumentCache full:https://registry.npmjs.org/@types%2fnode set size:undefined disposed:false
+24 silly fetch manifest @types/vscode@1.95.0
+25 silly packumentCache full:https://registry.npmjs.org/@types%2fvscode cache-miss
+26 http fetch GET 200 https://registry.npmjs.org/@types%2fvscode 112ms (cache miss)
+27 silly packumentCache full:https://registry.npmjs.org/@types%2fvscode set size:undefined disposed:false
+28 silly placeDep ROOT @types/node@22.9.0 OK for:  want: 22.9.0
+29 silly placeDep ROOT @types/vscode@1.95.0 OK for:  want: 1.95.0
+30 silly fetch manifest undici-types@~6.19.8
+31 silly packumentCache full:https://registry.npmjs.org/undici-types cache-miss
+32 http fetch GET 200 https://registry.npmjs.org/undici-types 45ms (cache miss)
+33 silly packumentCache full:https://registry.npmjs.org/undici-types set size:undefined disposed:false
+34 silly placeDep ROOT undici-types@6.19.8 OK for: @types/node@22.9.0 want: ~6.19.8
+35 silly reify moves {}
+36 silly audit bulk request {
+36 silly audit   'types-registry': [ '0.1.693' ],
+36 silly audit   '@types/node': [ '22.9.0' ],
+36 silly audit   '@types/vscode': [ '1.95.0' ],
+36 silly audit   'undici-types': [ '6.19.8' ]
+36 silly audit }
+37 silly tarball no local data for undici-types@https://registry.npmjs.org/undici-types/-/undici-types-6.19.8.tgz. Extracting by manifest.
+38 silly tarball no local data for @types/vscode@https://registry.npmjs.org/@types/vscode/-/vscode-1.95.0.tgz. Extracting by manifest.
+39 silly tarball no local data for @types/node@https://registry.npmjs.org/@types/node/-/node-22.9.0.tgz. Extracting by manifest.
+40 http fetch GET 200 https://registry.npmjs.org/undici-types/-/undici-types-6.19.8.tgz 80ms (cache miss)
+41 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 210ms
+42 silly audit report {}
+43 http fetch GET 200 https://registry.npmjs.org/@types/node/-/node-22.9.0.tgz 219ms (cache miss)
+44 http fetch GET 200 https://registry.npmjs.org/@types/vscode/-/vscode-1.95.0.tgz 656ms (cache miss)
+45 silly ADD node_modules/undici-types
+46 silly ADD node_modules/@types/vscode
+47 silly ADD node_modules/@types/node
+48 verbose cwd /home/greg/.cache/typescript/5.6
+49 verbose os Linux 5.15.153.1-microsoft-standard-WSL2
+50 verbose node v20.17.0
+51 verbose npm  v10.8.2
+52 verbose exit 0
+53 info ok

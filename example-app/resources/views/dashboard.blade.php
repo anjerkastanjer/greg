@@ -16,10 +16,10 @@
                         @if ($oppasser)
                             <!-- Als de gebruiker al een oppasser is -->
                             <p class="mt-4 text-red-600 font-bold text-lg">
-    Je bent al aangemeld als oppasser, verwijder jezelf om jezelf opnieuw aan te melden.</p>
+                                Je bent al aangemeld als oppasser, verwijder jezelf om jezelf opnieuw aan te melden.</p>
                         @else
                             <button id="toggle-oppasser-form" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                Oppasser Aanmelden
+                                Jezelf Aanmelden als Oppasser
                             </button>
                         @endif
                     </div>
@@ -74,18 +74,27 @@
                         <ul class="mt-4">
                             @foreach ($oppassers as $oppasser)
                                 @if (auth()->check() && ($oppasser->user_id !== auth()->id())) <!-- Skip the current user's oppasser -->
-                                    <li class="mb-4">
+                                    <li class="mb-4 border-t border-white pt-4">
+                                        <strong>Naam:</strong> {{ $oppasser->naam }} <br>
+                                        <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
+                                        <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
+                                        <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
+                                    </li>
+                                @else
+                                    <li class="mb-4 border-t border-white pt-4">
                                         <strong>Naam:</strong> {{ $oppasser->naam }} <br>
                                         <strong>Soort Dier:</strong> {{ implode(', ', json_decode($oppasser->soort_dier, true) ?? []) }} <br>
                                         <strong>Prijs per uur:</strong> €{{ $oppasser->loon }} <br>
                                         <strong>Gebruiker:</strong> {{ $oppasser->user->name ?? 'Onbekend' }}
 
-                                        <!-- Verwijderknop voor elke oppasser -->
-                                        <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2 text-center">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Verwijderen</button>
-                                        </form>
+                                        <!-- Verwijderknop voor de ingelogde gebruiker of beheerder -->
+                                        @if (auth()->user()->is_admin || auth()->id() === $oppasser->user_id)
+                                            <form action="{{ route('oppasser.destroy', $oppasser->id) }}" method="POST" class="mt-2 text-center">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Verwijderen</button>
+                                            </form>
+                                        @endif
                                     </li>
                                 @endif
                             @endforeach
