@@ -27,19 +27,10 @@
                                         <strong>Huisdier Naam:</strong> {{ $aanvraag->pet->naam }} <br>
                                         <strong>Uurloon:</strong> €{{ number_format($aanvraag->pet->loon_per_uur, 2) }} <br>
                                         <strong>Status:</strong> {{ ucfirst($aanvraag->status) }} <br>
-                                        
-                                        <!-- Knoppen voor accepteren en afwijzen -->
-                                        @if ($aanvraag->status != 'accepted')
-                                            <form action="{{ route('aanvragen.accept', $aanvraag->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Accepteren</button>
-                                            </form>
-                                            <form action="{{ route('aanvragen.reject', $aanvraag->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Afwijzen</button>
-                                            </form>
+
+                                        @if ($aanvraag->status == 'pending' && $aanvraag->owner_id == Auth::id())
+                                            <a href="{{ route('aanvragen.accept', $aanvraag->id) }}" class="text-green-500">Accepteer</a> |
+                                            <a href="{{ route('aanvragen.reject', $aanvraag->id) }}" class="text-red-500">Verwijder</a>
                                         @endif
                                     </li>
                                 @endforeach
@@ -56,14 +47,10 @@
                                         <strong>Huisdier Naam:</strong> {{ $aanvraag->pet->naam }} <br>
                                         <strong>Uurloon:</strong> €{{ number_format($aanvraag->pet->loon_per_uur, 2) }} <br>
                                         <strong>Status:</strong> {{ ucfirst($aanvraag->status) }} <br>
-                                        
-                                        <!-- Alleen een annuleren knop voor uitgaande aanvragen -->
-                                        @if ($aanvraag->status != 'accepted')
-                                            <form action="{{ route('aanvragen.reject', $aanvraag->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Annuleren</button>
-                                            </form>
+
+                                        @if ($aanvraag->status == 'pending' && $aanvraag->oppasser_id == Auth::id())
+                                            <a href="{{ route('aanvragen.accept', $aanvraag->id) }}" class="text-green-500">Accepteer</a> |
+                                            <a href="{{ route('aanvragen.reject', $aanvraag->id) }}" class="text-red-500">Verwijder</a>
                                         @endif
                                     </li>
                                 @endforeach

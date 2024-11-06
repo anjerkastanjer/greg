@@ -9,22 +9,22 @@ use Illuminate\Support\Facades\Auth;
 class AanvraagController extends Controller
 {
     public function index()
-{
-    // Haal de binnenkomende aanvragen op voor de ingelogde gebruiker
-    $binnenkomendeAanvragen = Aanvraag::where('owner_id', Auth::id())
-        ->where('status', '!=', 'accepted') // Alleen niet-geaccepteerde aanvragen
-        ->with('pet') // Laad de pet relatie
-        ->get();
+    {
+        // Haal uitgaande aanvragen van de eigenaar op
+        $uitgaandeAanvragen = Aanvraag::where('owner_id', Auth::id())
+            ->where('status', '!=', 'accepted') // Filter de geaccepteerde aanvragen uit
+            ->with('pet', 'oppasser') // Laad de pet en oppasser relaties
+            ->get();
 
-    // Haal de uitgaande aanvragen op voor de ingelogde gebruiker
-    $uitgaandeAanvragen = Aanvraag::where('oppasser_id', Auth::id())
-        ->where('status', '!=', 'accepted') // Alleen niet-geaccepteerde aanvragen
-        ->with('pet') // Laad de pet relatie
-        ->get();
+        // Haal binnenkomende aanvragen op voor de oppasser
+        $binnenkomendeAanvragen = Aanvraag::where('oppasser_id', Auth::id())
+            ->where('status', '!=', 'accepted') // Filter de geaccepteerde aanvragen uit
+            ->with('pet', 'owner') // Laad de pet en owner relaties
+            ->get();
 
-    return view('aanvragen.index', compact('binnenkomendeAanvragen', 'uitgaandeAanvragen'));
-}
-
+        // Toon beide aanvragen in de view
+        return view('aanvragen.index', compact('uitgaandeAanvragen', 'binnenkomendeAanvragen'));
+    }
 
     public function store(Request $aanvraag, $owner_id)
     {

@@ -33,7 +33,7 @@
                                             <form action="{{ route('aanvragen.accept', $aanvraag->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('PATCH')
-                                                <button type="submit" class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Accepteren</button>
+                                                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Accepteren</button>
                                             </form>
                                             <form action="{{ route('aanvragen.reject', $aanvraag->id) }}" method="POST" style="display:inline;">
                                                 @csrf
