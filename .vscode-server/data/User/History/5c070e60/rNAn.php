@@ -6,7 +6,6 @@ use App\Http\Controllers\PetController;
 use App\Http\Controllers\SittingRequestController;
 use App\Http\Controllers\OppasserController;
 use App\Http\Controllers\AanvraagController;
-use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pet;
 

@@ -43,7 +43,7 @@
                 <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Leave a Review for {{ $aanvraag->pet->naam }}</h3>
 
                 <label for="rating" class="block text-sm font-medium text-gray-700">Rating</label>
-                <select name="rating" id="rating" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black bg-white" style="color: black;">
+                <select name="rating" id="rating" class="mt-1 block w-full text-black bg-white">
                     <option value="1" class="text-black">1</option>
                     <option value="2" class="text-black">2</option>
                     <option value="3" class="text-black">3</option>
@@ -52,10 +52,10 @@
                 </select>
 
                 <label for="body" class="block text-sm font-medium text-gray-700 mt-4">Review</label>
-                <textarea name="body" id="body" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black bg-white" style="color: black;"></textarea>
+                <textarea name="body" id="body" rows="4" class="mt-1 block w-full text-black bg-white"></textarea>
 
                 <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                    <button type="submit" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white sm:ml-3 sm:w-auto sm:text-sm">
                         Submit Review
                     </button>
                     <button type="button" onclick="document.getElementById('reviewModal-{{ $aanvraag->id }}').style.display='none'" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
