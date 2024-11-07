@@ -58,6 +58,8 @@ Route::resource('pets', PetController::class);
 // delete huisdier/pet
 Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
 
+
+
 // review routes
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 

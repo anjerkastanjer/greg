@@ -292,3 +292,13 @@ php artisan view:clear
 php artisan serve
 mysql -u root -p
 php artisan serve
+cd example-app/
+php artisan serve
+php artisan make:controller ReviewController
+php artisan serve
+php artisan migrate
+php artisan migrate:status
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
