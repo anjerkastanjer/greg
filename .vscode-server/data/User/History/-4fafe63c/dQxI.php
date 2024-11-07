@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
         $table->id();
         $table->foreignId('pet_id')->constrained()->onDelete('cascade');
+        $table->unsignedTinyInteger('rating'); // Houdt een numerieke rating bij, bijvoorbeeld tussen 1 en 5
         $table->text('body'); // Tekst van de review
         $table->timestamps();
         });

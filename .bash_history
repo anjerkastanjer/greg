@@ -216,3 +216,79 @@ php artisan serve
 php artisan migrate:rollback
 php artisan migrate
 php artisan serve
+cd example-app/
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+mysql -u root -p
+php artisan make:migration create_aanvragen_table --create=aanvragen
+php artisan migrate
+php artisan make:model Aanvraag
+php artisan make:controller AanvraagController
+php artisan serve
+
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan make:migration add_pet_id_to_aanvragen_table --table=aanvragen
+php artisan migrate
+php artisan tinker
+php artisan migrate
+php artisan tinker
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan serve
+mysql -u root -p
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate:refresh
+mysql -u root -p
+php artisan migrate
+mysql -u root -p
+php artisan migrate
+mysql -u root -p
+php artisan migrate:rollback
+php artisan migrate
+mysql -u root -p
+php artisan migrate
+php artisan serve
+mysql -u root -p
+php artisan serve
+mysql -u root -p
+php artisan serve
+mysql -u root -p
+php artisan serve
+php
+php artisan migrate:rollback
+php artisan migrate:reset
+mysql -u root -p
+php artisan migrate
+php artisan serve
+mysql -u root -p
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+mysql -u root -p
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate
+mysql -u root -p
+php artisan migrate:rollback
+mysql -u root -p
+php artisan migrate
+php artisan serve
+php artisan route:clear
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+php artisan serve
+mysql -u root -p
+php artisan serve
