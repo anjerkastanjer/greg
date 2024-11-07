@@ -91,7 +91,7 @@
                                         <!-- Toon afbeelding van de oppasser -->
                                         @if ($oppasser->profile_image)
                                         <div class="w-80 h-80 flex flex-col">
-                                            <img src="{{ asset('storage/' . $oppasser->profile_image) }}" alt="Image of {{ $oppasser->naam }}" class="mx-auto mb-4 min-h-0 min-w-0 object-contain">
+                                            <img src="{{ asset('storage/' . $oppasser->profile_image) }}" alt="Image of {{ $oppasser->naam }}" class="rounded-full mx-auto mb-4 max-w-80 max-h-80 object-contain">
 </div>
                                             @else
                                             <p class="text-red-600">Geen profielfoto</p>
