@@ -27,10 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('oppassers', function (Blueprint $table) {
-            $table->dropColumn('profile_image'); // Remove the profile_image column
-        });
-        
         Schema::dropIfExists('oppasser');
     }
 };

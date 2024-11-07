@@ -38,6 +38,7 @@ class PetController extends Controller
         return view('pets.all', compact('otherPets', 'userPets', 'allPetsWithReviews'));
     }
 
+ 
     // Opslaan van een nieuw huisdier
     public function store(Request $request)
     {

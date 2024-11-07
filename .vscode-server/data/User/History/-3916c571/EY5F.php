@@ -71,18 +71,21 @@ class OppasserController extends Controller
         ]);
     }
     
-    public function showOppassersPage()
-    {
-        // Get the logged-in user's oppasser
-        $currentUserOppasser = Oppasser::where('user_id', auth()->id())->first(); 
-    
-        // Get all oppassers for the list
-        $oppassers = Oppasser::all(); 
-    
-        // Return the view with the oppassers
-        return view('Oppassers', compact('currentUserOppasser', 'oppassers'));
-    }
-    
+
+public function showOppassersPage()
+{
+    // Get the logged-in user's oppasser
+    $currentUserOppasser = Oppasser::where('user_id', auth()->id())->first(); 
+
+    // Get all oppassers for the list
+    $oppassers = Oppasser::all(); 
+
+    // Return view with updated variable name
+    return view('Oppassers', compact('currentUserOppasser', 'oppassers'));
+}
+
+
+
     /**
      * Show the specified oppasser.
      */

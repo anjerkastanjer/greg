@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id();
         $table->foreignId('pet_id')->constrained()->onDelete('cascade');
         $table->unsignedTinyInteger('rating')->nullable(); // Houdt een numerieke rating bij, bijvoorbeeld tussen 1 en 5
-        $table->text('body')->nullable(); // Tekst van de review
+        $table->text('body'); // Tekst van de review
         $table->timestamps();
         });
     }

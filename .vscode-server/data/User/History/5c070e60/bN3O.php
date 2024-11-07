@@ -60,8 +60,6 @@ Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destr
 
 // review routes
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
-
 
 // jouw huisdieren pagina routes
 Route::get('/pets.index', function () {

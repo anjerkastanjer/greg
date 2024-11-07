@@ -7,17 +7,6 @@ use App\Models\Review;
 
 class ReviewController extends Controller
 {
-
-
-    public function index()
-    {
-        // Get all reviews with their associated pet details (e.g., pet name)
-        $reviews = Review::with('pet')->get();
-
-        // Pass the reviews to the view
-        return view('reviews.index', compact('reviews'));
-    }
-    
     public function store(Request $request)
 {
     $request->validate([

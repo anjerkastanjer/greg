@@ -60,8 +60,6 @@ Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destr
 
 // review routes
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
-
 
 // jouw huisdieren pagina routes
 Route::get('/pets.index', function () {
@@ -69,9 +67,11 @@ Route::get('/pets.index', function () {
     return view('pets.index', compact('pets')); // Pass the user's pets to the view
 })->middleware(['auth'])->name('pets.index');
 
-// alle huisdieren pagina routes
-Route::get('/pets/all', [PetController::class, 'show'])->middleware(['auth'])->name('pets.all');
-Route::get('/pets/{id}', [App\Http\Controllers\PetController::class, 'show'])->name('pets.show');
+// alle huisdieren pagina route with corrected method call
+Route::get('/pets/all', [PetController::class, 'allPets'])->middleware(['auth'])->name('pets.all'); // Calls the allPets method to display all pets with reviews
+
+// Single pet details route
+Route::get('/pets/{id}', [PetController::class, 'show'])->name('pets.show'); // Calls the show method to display details of a single pet
 
 // User-related routes
 Route::resource('users', UserController::class);
