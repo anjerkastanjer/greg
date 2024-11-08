@@ -13,7 +13,7 @@ use App\Models\Pet;
 
 // Home route
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
 // Dashboard route
@@ -78,7 +78,6 @@ Route::get('/pets/{id}', [App\Http\Controllers\PetController::class, 'show'])->n
 Route::resource('users', UserController::class);
 
 // admin routes
-//Route::get('/admin', [AdminController::class, 'index'])->middleware('admin'); // Only apply the middleware here
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::delete('admin/oppassers/{oppasser}', [OppasserController::class, 'destroy'])->name('admin.oppasser.destroy');
 Route::delete('admin/aanvragen/{id}', [AdminController::class, 'deleteOppasaanvraag'])->name('admin.aanvraag.destroy');
