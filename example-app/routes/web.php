@@ -7,12 +7,13 @@ use App\Http\Controllers\SittingRequestController;
 use App\Http\Controllers\OppasserController;
 use App\Http\Controllers\AanvraagController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pet;
 
 // Home route
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // Dashboard route
@@ -65,8 +66,8 @@ Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index'
 
 // jouw huisdieren pagina routes
 Route::get('/pets.index', function () {
-    $pets = Pet::where('user_id', auth()->id())->get(); // Fetch only pets for the authenticated user
-    return view('pets.index', compact('pets')); // Pass the user's pets to the view
+    $pets = Pet::where('user_id', auth()->id())->get(); 
+    return view('pets.index', compact('pets')); 
 })->middleware(['auth'])->name('pets.index');
 
 // alle huisdieren pagina routes
@@ -76,9 +77,12 @@ Route::get('/pets/{id}', [App\Http\Controllers\PetController::class, 'show'])->n
 // User-related routes
 Route::resource('users', UserController::class);
 
-Route::get('/admin', function () {
-    return view('admin'); // Create this view
-})->middleware(['auth', 'admin'])->name('admin'); // Assuming you have an admin middleware
+// admin routes
+//Route::get('/admin', [AdminController::class, 'index'])->middleware('admin'); // Only apply the middleware here
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::delete('admin/oppassers/{oppasser}', [OppasserController::class, 'destroy'])->name('admin.oppasser.destroy');
+Route::delete('admin/aanvragen/{id}', [AdminController::class, 'deleteOppasaanvraag'])->name('admin.aanvraag.destroy');
+Route::patch('/profile/toggle-admin', [ProfileController::class, 'toggleAdmin'])->name('profile.toggleAdmin')->middleware('auth');
 
 // Require authentication routes
 require __DIR__.'/auth.php';
