@@ -47,6 +47,16 @@
             @endif
         </div>
 
+        <!-- Admin Switch Toggle -->
+        <div>
+            <x-input-label for="is_admin" :value="__('Admin Role')" />
+            <label for="is_admin" class="inline-flex items-center mt-4">
+                <span class="mr-2 text-sm text-gray-600 dark:text-gray-400">Admin Toggle</span>
+                <input type="checkbox" id="is_admin" name="is_admin" style= "margin-left:5px;" class="rounded-full " {{ $user->is_admin ? 'checked' : '' }}>
+            </label>
+            <x-input-error class="mt-2" :messages="$errors->get('is_admin')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
