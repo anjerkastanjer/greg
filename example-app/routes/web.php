@@ -77,8 +77,10 @@ Route::get('/pets/{id}', [App\Http\Controllers\PetController::class, 'show'])->n
 // User-related routes
 Route::resource('users', UserController::class);
 
-// admin routes
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+// Admin route met middleware beveiliging alleen voor de hoofd admin pagina
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware(['auth', 'admin']);
+
+// Overige adminacties zonder extra middleware beveiliging
 Route::delete('admin/oppassers/{oppasser}', [OppasserController::class, 'destroy'])->name('admin.oppasser.destroy');
 Route::delete('admin/aanvragen/{id}', [AdminController::class, 'deleteOppasaanvraag'])->name('admin.aanvraag.destroy');
 Route::patch('/profile/toggle-admin', [ProfileController::class, 'toggleAdmin'])->name('profile.toggleAdmin')->middleware('auth');
