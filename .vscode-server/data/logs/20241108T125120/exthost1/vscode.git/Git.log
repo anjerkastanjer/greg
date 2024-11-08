@@ -1,0 +1,70 @@
+2024-11-08 12:51:23.682 [info] [main] Log level: Info
+2024-11-08 12:51:23.682 [info] [main] Validating found git in: "git"
+2024-11-08 12:51:23.810 [info] [main] Using git "2.34.1" from "git"
+2024-11-08 12:51:23.810 [info] [Model][doInitialScan] Initial repository scan started
+2024-11-08 12:51:24.034 [info] > git rev-parse --show-toplevel [125ms]
+2024-11-08 12:51:24.039 [info] > git rev-parse --git-dir --git-common-dir [1ms]
+2024-11-08 12:51:24.060 [info] [Model][openRepository] Opened repository: /home/greg
+2024-11-08 12:51:24.079 [info] > git config --get commit.template [3ms]
+2024-11-08 12:51:24.079 [info] > git rev-parse --show-toplevel [2ms]
+2024-11-08 12:51:24.090 [info] [Git][getRemotes] No remotes found in the git config file
+2024-11-08 12:51:24.094 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [12ms]
+2024-11-08 12:51:24.101 [info] > git rev-parse --show-toplevel [7ms]
+2024-11-08 12:51:24.104 [info] > git rev-parse --show-toplevel [1ms]
+2024-11-08 12:51:24.114 [info] > git rev-parse --show-toplevel [8ms]
+2024-11-08 12:51:24.117 [info] > git rev-parse --show-toplevel [1ms]
+2024-11-08 12:51:24.121 [info] > git rev-parse --show-toplevel [1ms]
+2024-11-08 12:51:24.123 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [23ms]
+2024-11-08 12:51:24.125 [info] > git rev-parse --show-toplevel [2ms]
+2024-11-08 12:51:24.128 [info] > git rev-parse --git-dir --git-common-dir [1ms]
+2024-11-08 12:51:24.140 [info] [Model][openRepository] Opened repository: /home/greg/.nvm
+2024-11-08 12:51:24.145 [info] > git config --get commit.template [2ms]
+2024-11-08 12:51:24.146 [info] > git rev-parse --show-toplevel [2ms]
+2024-11-08 12:51:24.160 [info] > git rev-parse --show-toplevel [2ms]
+2024-11-08 12:51:24.164 [info] > git rev-parse --show-toplevel [1ms]
+2024-11-08 12:51:24.169 [info] [Model][doInitialScan] Initial repository scan completed - repositories (2), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2024-11-08 12:51:24.172 [info] > git for-each-ref --format %(refname) %(objectname) %(*objectname) refs/tags [21ms]
+2024-11-08 12:51:24.195 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [13ms]
+2024-11-08 12:51:24.228 [info] > git status -z -uall [51ms]
+2024-11-08 12:51:24.380 [info] > git status -z -uall [283ms]
+2024-11-08 12:51:24.414 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [16ms]
+2024-11-08 12:51:24.417 [info] > git config --get commit.template [38ms]
+2024-11-08 12:51:24.418 [info] > git config --local branch.master.vscode-merge-base [2ms]
+2024-11-08 12:51:24.418 [warning] [Git][config] git config failed: Failed to execute git
+2024-11-08 12:51:24.421 [info] > git config --get commit.template [7ms]
+2024-11-08 12:51:24.426 [info] [Git][getRemotes] No remotes found in the git config file
+2024-11-08 12:51:24.426 [info] > git for-each-ref --format %(refname) %(objectname) %(*objectname) refs/tags [3ms]
+2024-11-08 12:51:24.444 [info] > git status -z -uall [12ms]
+2024-11-08 12:51:24.444 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [18ms]
+2024-11-08 12:51:24.450 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [13ms]
+2024-11-08 12:51:24.460 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [11ms]
+2024-11-08 12:51:24.517 [info] > git status -z -uall [71ms]
+2024-11-08 12:51:24.527 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [1ms]
+2024-11-08 12:51:24.531 [info] > git config --local branch.master.vscode-merge-base [1ms]
+2024-11-08 12:51:24.531 [warning] [Git][config] git config failed: Failed to execute git
+2024-11-08 12:51:24.829 [info] > git reflog master --grep-reflog=branch: Created from *. [296ms]
+2024-11-08 12:51:24.831 [info] > git reflog master --grep-reflog=branch: Created from *. [411ms]
+2024-11-08 12:51:24.834 [info] > git symbolic-ref --short refs/remotes/origin/HEAD [3ms]
+2024-11-08 12:51:24.834 [info] fatal: ref refs/remotes/origin/HEAD is not a symbolic ref
+2024-11-08 12:51:24.834 [warning] [Repository][getDefaultBranch] Failed to get default branch details: Failed to execute git.
+2024-11-08 12:51:24.845 [info] > git symbolic-ref --short refs/remotes/origin/HEAD [12ms]
+2024-11-08 12:51:24.845 [info] fatal: ref refs/remotes/origin/HEAD is not a symbolic ref
+2024-11-08 12:51:24.845 [warning] [Repository][getDefaultBranch] Failed to get default branch details: Failed to execute git.
+2024-11-08 12:51:24.883 [info] > git show --textconv :example-app/resources/views/dashboard.blade.php [23ms]
+2024-11-08 12:51:24.883 [info] > git show --textconv :example-app/app/Http/Controllers/PetController.php [17ms]
+2024-11-08 12:51:24.883 [info] > git check-ignore -v -z --stdin [3ms]
+2024-11-08 12:51:24.884 [info] > git ls-files --stage -- /home/greg/example-app/app/Http/Controllers/PetController.php [13ms]
+2024-11-08 12:51:24.887 [info] > git ls-files --stage -- /home/greg/example-app/resources/views/dashboard.blade.php [17ms]
+2024-11-08 12:51:24.893 [info] > git check-ignore -v -z --stdin [15ms]
+2024-11-08 12:51:24.898 [info] > git cat-file -s 1941b6cde7f560fd9901c764893b4b7423567b59 [9ms]
+2024-11-08 12:51:24.898 [info] > git cat-file -s 0be55e2d246991aed2379397eeaf5586e9d6c152 [12ms]
+2024-11-08 12:53:38.326 [info] > git check-ignore -v -z --stdin [2ms]
+2024-11-08 12:53:45.776 [info] > git check-ignore -v -z --stdin [2ms]
+2024-11-08 12:53:51.513 [info] > git show --textconv :example-app/resources/views/aanvragen/index.blade.php [3ms]
+2024-11-08 12:53:51.513 [info] > git ls-files --stage -- /home/greg/example-app/resources/views/aanvragen/index.blade.php [1ms]
+2024-11-08 12:53:51.515 [info] > git cat-file -s 3183164fefc96abeb555a7096e97c4e5d049df0c [0ms]
+2024-11-08 13:04:36.664 [info] > git ls-files --stage -- /home/greg/example-app/resources/views/dashboard.blade.php [16ms]
+2024-11-08 13:04:36.666 [info] > git show --textconv :example-app/resources/views/dashboard.blade.php [19ms]
+2024-11-08 13:04:36.667 [info] > git cat-file -s 1941b6cde7f560fd9901c764893b4b7423567b59 [0ms]
+2024-11-08 13:11:16.227 [info] > git check-ignore -v -z --stdin [3ms]
+2024-11-08 13:11:19.669 [info] > git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%D%n%B -z --shortstat --diff-merges=first-parent -n50 --skip=0 --topo-order --decorate=full --stdin [3986ms]

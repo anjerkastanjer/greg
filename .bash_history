@@ -302,3 +302,27 @@ php artisan serve
 php artisan migrate:rollback
 php artisan migrate
 php artisan serve
+cd example-app/
+php artisan serve
+mysql -u root -p
+php artisan serve
+mysql -u root -p
+php artisan serve
+mysql -u root -p
+php artisan serve
+php artisan migrate:rollback
+php artisan migrate
+php artisan migrate:rollback
+mysql -u root -p
+php artisan migrate
+mysql -u root -p
+php artisan migrate
+php artisan serve
+php artisan storage:link
+php artisan serve
+php artisan storage:link
+mysql -u root -p
+php artisan serve
+cd ex
+cd example-app/
+php artisan serve

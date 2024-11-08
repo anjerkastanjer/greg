@@ -1,21 +1,21 @@
-2024-11-07 17:43:50.695 [info] Extension host with pid 995 started
-2024-11-07 17:43:50.772 [info] ExtensionService#_doActivateExtension vscode.tunnel-forwarding, startup: false, activationEvent: 'onTunnel'
-2024-11-07 17:43:50.773 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
-2024-11-07 17:43:50.774 [info] ExtensionService#_doActivateExtension vscode.php-language-features, startup: false, activationEvent: 'onLanguage:php'
-2024-11-07 17:43:50.941 [info] Lock '/home/greg/.vscode-server/data/User/workspaceStorage/f4be759cc90087aa636f7144e54f67d7/vscode.lock': Lock acquired.
-2024-11-07 17:43:51.265 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
-2024-11-07 17:43:51.374 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
-2024-11-07 17:43:51.374 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
-2024-11-07 17:43:52.053 [info] Eager extensions activated
-2024-11-07 17:43:52.054 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
-2024-11-07 17:43:52.054 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
-2024-11-07 19:34:48.266 [info] ExtensionService#_doActivateExtension vscode.npm, startup: false, activationEvent: 'onTerminalQuickFixRequest:ms-vscode.npm-command'
-2024-11-07 19:34:53.475 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
-2024-11-07 19:34:53.475 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
-2024-11-07 19:34:53.475 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
-2024-11-07 21:20:52.811 [info] Extension host terminating: received terminate message from renderer
-2024-11-07 21:20:52.812 [info] Lock '/home/greg/.vscode-server/data/User/workspaceStorage/f4be759cc90087aa636f7144e54f67d7/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
-2024-11-07 21:20:52.848 [error] Canceled: Canceled
+2024-11-07 21:27:22.224 [info] Extension host with pid 972 started
+2024-11-07 21:27:22.256 [info] Lock '/home/greg/.vscode-server/data/User/workspaceStorage/f4be759cc90087aa636f7144e54f67d7/vscode.lock': Lock acquired.
+2024-11-07 21:27:22.383 [info] ExtensionService#_doActivateExtension vscode.tunnel-forwarding, startup: false, activationEvent: 'onTunnel'
+2024-11-07 21:27:22.385 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2024-11-07 21:27:22.385 [info] ExtensionService#_doActivateExtension vscode.php-language-features, startup: false, activationEvent: 'onLanguage:php'
+2024-11-07 21:27:22.572 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2024-11-07 21:27:22.633 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2024-11-07 21:27:22.633 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2024-11-07 21:27:23.404 [info] Eager extensions activated
+2024-11-07 21:27:23.404 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2024-11-07 21:27:23.405 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2024-11-07 21:28:44.958 [info] ExtensionService#_doActivateExtension vscode.npm, startup: false, activationEvent: 'onTerminalQuickFixRequest:ms-vscode.npm-command'
+2024-11-07 21:28:50.150 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
+2024-11-07 21:28:50.150 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+2024-11-07 21:28:50.150 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
+2024-11-07 21:34:03.055 [info] Extension host terminating: received terminate message from renderer
+2024-11-07 21:34:03.055 [info] Lock '/home/greg/.vscode-server/data/User/workspaceStorage/f4be759cc90087aa636f7144e54f67d7/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+2024-11-07 21:34:03.114 [error] Canceled: Canceled
 	at new tT (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:151066)
 	at py.U (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:155676)
 	at s.<computed>.n.charCodeAt.s.<computed> (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:153170)
@@ -71,7 +71,7 @@
 	at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
 	at Readable.push (node:internal/streams/readable:390:5)
 	at TCP.onStreamRead (node:internal/stream_base_commons:191:23) setContext undefined
-2024-11-07 21:20:52.848 [error] Canceled: Canceled
+2024-11-07 21:34:03.116 [error] Canceled: Canceled
 	at new tT (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:151066)
 	at py.U (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:155676)
 	at s.<computed>.n.charCodeAt.s.<computed> (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:153170)
@@ -129,7 +129,7 @@
 	at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
 	at Readable.push (node:internal/streams/readable:390:5)
 	at TCP.onStreamRead (node:internal/stream_base_commons:191:23) setContext undefined
-2024-11-07 21:20:52.849 [error] Canceled: Canceled
+2024-11-07 21:34:03.116 [error] Canceled: Canceled
 	at new tT (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:151066)
 	at py.U (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:155676)
 	at s.<computed>.n.charCodeAt.s.<computed> (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:153170)
@@ -185,7 +185,7 @@
 	at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
 	at Readable.push (node:internal/streams/readable:390:5)
 	at TCP.onStreamRead (node:internal/stream_base_commons:191:23) setContext undefined
-2024-11-07 21:20:52.849 [error] Canceled: Canceled
+2024-11-07 21:34:03.116 [error] Canceled: Canceled
 	at new tT (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:151066)
 	at py.U (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:155676)
 	at s.<computed>.n.charCodeAt.s.<computed> (file:///home/greg/.vscode-server/bin/65edc4939843c90c34d61f4ce11704f09d3e5cb6/out/vs/workbench/api/node/extensionHostProcess.js:31:153170)
@@ -243,4 +243,4 @@
 	at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
 	at Readable.push (node:internal/streams/readable:390:5)
 	at TCP.onStreamRead (node:internal/stream_base_commons:191:23) setContext undefined
-2024-11-07 21:20:52.850 [info] Extension host with pid 995 exiting with code 0
+2024-11-07 21:34:03.119 [info] Extension host with pid 972 exiting with code 0

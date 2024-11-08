@@ -5,6 +5,15 @@
         </h2>
     </x-slot>
 
+    <div class=" h-48 p-3 bg-gray-700">
+  <div class="h-full w-48 bg-gray-700 border border-gray-300 flex flex-col">
+    <div class="h-6 bg-gray-400 opacity-50 w-full">
+      Username
+    </div>
+    <img class="w-full object-contain min-h-0" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" />
+  </div>
+</div>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -31,7 +40,7 @@
                             @if ($oppasser->profile_image)
                          <div class="max-w-80 max-h-80 w-80 h-80">
 
-                        <img src="{{ asset('storage/' . $oppasser->profile_image) }}" alt="Image of {{ $oppasser->naam }}" class="rounded-full w-80 h-80 mx-auto mb-4 object-scale-down" style= "max-height: 300px; max-width: 300px;">
+                                            <img src="{{ asset('storage/' . $oppasser->profile_image) }}" alt="Image of {{ $oppasser->naam }}" class="rounded-full  mx-auto mb-4 object-contain">
                         </div>
                         <div class=" h-48 p-3 bg-gray-700">
                             @else
@@ -92,9 +101,9 @@
                                     <li class="mb-4 border-t border-white pt-4">
                                         <!-- Toon afbeelding van de oppasser -->
                                         @if ($oppasser->profile_image)
-                                        
-                                            <img src="{{ asset('storage/' . $oppasser->profile_image) }}" alt="Image of {{ $oppasser->naam }}" class="rounded-full mx-auto mb-4" style= "max-height: 300px; max-width: 300px;">
-                                         
+                                        <div class="w-80 h-80 flex flex-col">
+                                            <img src="{{ asset('storage/' . $oppasser->profile_image) }}" alt="Image of {{ $oppasser->naam }}" class="rounded-full mx-auto mb-4 min-h-0 min-w-0 object-contain">
+</div>
                                             @else
                                             <p class="text-red-600">Geen profielfoto</p>
                                         @endif
