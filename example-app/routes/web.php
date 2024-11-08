@@ -83,7 +83,7 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middlewa
 // Overige adminacties zonder extra middleware beveiliging
 Route::delete('admin/oppassers/{oppasser}', [OppasserController::class, 'destroy'])->name('admin.oppasser.destroy');
 Route::delete('admin/aanvragen/{id}', [AdminController::class, 'deleteOppasaanvraag'])->name('admin.aanvraag.destroy');
-Route::patch('/profile/toggle-admin', [ProfileController::class, 'toggleAdmin'])->name('profile.toggleAdmin')->middleware('auth');
+Route::patch('/profile/toggle-admin', [UserController::class, 'toggleAdmin'])->name('profile.toggleAdmin')->middleware('auth');
 
 // Require authentication routes
 require __DIR__.'/auth.php';

@@ -69,7 +69,7 @@
 
 <!-- Voeg een knop toe om de toggle op te slaan -->
 <button type="submit" formaction="{{ route('profile.toggleAdmin') }}" 
-        class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+        class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none">
     Admin-rechten bijwerken
 </button>
 

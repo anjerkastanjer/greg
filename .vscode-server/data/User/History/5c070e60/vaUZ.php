@@ -6,6 +6,8 @@ use App\Http\Controllers\PetController;
 use App\Http\Controllers\SittingRequestController;
 use App\Http\Controllers\OppasserController;
 use App\Http\Controllers\AanvraagController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Pet;
 
@@ -43,20 +45,29 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Aanvragen routes
-// Toon de aanvragenpagina
 Route::get('/aanvragen', [AanvraagController::class, 'index'])->name('aanvragen.index');
 Route::post('/aanvragen/{owner_id}', [AanvraagController::class, 'store'])->name('aanvragen.store');
 Route::patch('/aanvragen/{aanvraag_id}', [AanvraagController::class, 'updateStatus'])->name('aanvragen.updateStatus');
+Route::patch('/aanvragen/{aanvraag}/accept', [AanvraagController::class, 'acceptAanvraag'])->name('aanvragen.accept');
+Route::delete('/aanvragen/{aanvraag}/reject', [AanvraagController::class, 'rejectAanvraag'])->name('aanvragen.reject');
+
+// Mijn Diensten (Geaccepteerde Aanvragen) route
+Route::get('/aanvragen/geaccepteerd', [AanvraagController::class, 'geaccepteerdeAanvragen'])->name('aanvragen.geaccepteerd');
 
 // Pet-related routes
 Route::resource('pets', PetController::class);
 // delete huisdier/pet
 Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
 
+// review routes
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+
+
 // jouw huisdieren pagina routes
 Route::get('/pets.index', function () {
-    $pets = Pet::where('user_id', auth()->id())->get(); // Fetch only pets for the authenticated user
-    return view('pets.index', compact('pets')); // Pass the user's pets to the view
+    $pets = Pet::where('user_id', auth()->id())->get(); 
+    return view('pets.index', compact('pets')); 
 })->middleware(['auth'])->name('pets.index');
 
 // alle huisdieren pagina routes
@@ -66,14 +77,13 @@ Route::get('/pets/{id}', [App\Http\Controllers\PetController::class, 'show'])->n
 // User-related routes
 Route::resource('users', UserController::class);
 
-// Additional routes for navigation
-Route::get('/all-sitters', function () {
-    return view('all-sitters'); // Create this view
-})->middleware(['auth'])->name('sitters.all');
+// Admin route met middleware beveiliging alleen voor de hoofd admin pagina
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware(['auth', 'admin']);
 
-Route::get('/admin', function () {
-    return view('admin'); // Create this view
-})->middleware(['auth', 'admin'])->name('admin'); // Assuming you have an admin middleware
+// Overige adminacties zonder extra middleware beveiliging
+Route::delete('admin/oppassers/{oppasser}', [OppasserController::class, 'destroy'])->name('admin.oppasser.destroy');
+Route::delete('admin/aanvragen/{id}', [AdminController::class, 'deleteOppasaanvraag'])->name('admin.aanvraag.destroy');
+Route::patch('/profile/toggle-admin', [UserController::class, 'toggleAdmin'])->name('profile.toggleAdmin')->middleware('auth');
 
 // Require authentication routes
 require __DIR__.'/auth.php';

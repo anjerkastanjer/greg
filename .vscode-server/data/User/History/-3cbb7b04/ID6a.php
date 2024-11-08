@@ -60,7 +60,7 @@
 
         <!-- Voeg deze sectie toe in je update profile form -->
 <div class="mt-4">
-    <label for="is_admin" class="block font-medium text-sm text-gray-700">Admin Rechten</label>
+    <label for="is_admin" class="text-lg font-medium text-gray-900 dark:text-gray-100">Admin Rechten</label>
     <input type="checkbox" name="is_admin" id="is_admin" 
            value="1" 
            {{ auth()->user()->is_admin ? 'checked' : '' }}>
@@ -69,7 +69,7 @@
 
 <!-- Voeg een knop toe om de toggle op te slaan -->
 <button type="submit" formaction="{{ route('profile.toggleAdmin') }}" 
-        class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-black rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+        class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none">
     Admin-rechten bijwerken
 </button>
 
