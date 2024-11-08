@@ -30,7 +30,7 @@
                     @endforeach
                 </ul>
 
-                
+                <!-- Witte scheidingslijn -->
                 <div class="my-8 border-t border-white"></div>
 
                 <!-- Lijst van Pending Aanvragen -->
